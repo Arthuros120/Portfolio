@@ -18,6 +18,8 @@ const requiredSkills = [
 
 const interestIds = ['sailing', 'martial-arts', 'climbing', 'games', 'dj']
 
+const experienceTags = ['education', 'professional', 'retail', 'restaurant']
+
 const interestIcons = [
   'i-lucide-sailboat',
   'i-lucide-swords',
@@ -422,7 +424,7 @@ function assertExperiences(experiences) {
       fail(`${path} must be an object`)
     }
 
-    exactKeys(step, ['id', 'organization', 'period', 'title', 'detail'], path)
+    assertExperienceKeys(step, path)
     nonEmptyString(step.id, `${path}.id`)
 
     if (typeof step.id === 'string' && ids.has(step.id)) {
@@ -437,6 +439,59 @@ function assertExperiences(experiences) {
     nonEmptyString(step.period, `${path}.period`)
     localized(step.title, `${path}.title`)
     localized(step.detail, `${path}.detail`)
+    assertExperienceTags(step, path)
+  })
+}
+
+/**
+ * Required path fields, plus optional category tags.
+ * Missing tags become an empty list so the page can read them.
+ *
+ * @param {Record<string, unknown>} step
+ * @param {string} path
+ */
+function assertExperienceKeys(step, path) {
+  const required = ['id', 'organization', 'period', 'title', 'detail']
+  const allowed = new Set([...required, 'tags'])
+
+  for (const key of required) {
+    if (!Object.hasOwn(step, key)) {
+      fail(`${path} must have keys ${required.join(', ')}`)
+    }
+  }
+
+  for (const key of Object.keys(step)) {
+    if (!allowed.has(key)) {
+      fail(`${path} must have keys ${required.join(', ')}`)
+    }
+  }
+}
+
+/**
+ * @param {Record<string, unknown>} step
+ * @param {string} path
+ */
+function assertExperienceTags(step, path) {
+  if (step.tags === undefined) {
+    step.tags = []
+  }
+
+  if (!Array.isArray(step.tags)) {
+    fail(`${path}.tags must be a list`)
+  }
+
+  const seen = new Set()
+
+  step.tags.forEach((tag, index) => {
+    if (typeof tag !== 'string' || !experienceTags.includes(tag)) {
+      fail(`${path}.tags.${index} must be one of ${experienceTags.join(', ')}`)
+    }
+
+    if (seen.has(tag)) {
+      fail(`${path}.tags.${index} is duplicated`)
+    }
+
+    seen.add(tag)
   })
 }
 

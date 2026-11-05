@@ -48,6 +48,17 @@
     "codeFile": "profile.ts",
     "codeComment": "// [PLACEHOLDER]"
   },
+  "career": {
+    "timeline": "Career steps",
+    "previous": "Previous step",
+    "next": "Next step",
+    "sendWave": "Send a wave",
+    "water": "Send a wave and move one step",
+    "step": "{title}, {organization}, {period}",
+    "read": "Read the detail",
+    "active": "Selected step",
+    "missing": "This step is not available."
+  },
   "sections": {
     "projectsKicker": "projects",
     "careerKicker": "career",

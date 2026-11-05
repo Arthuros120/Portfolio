@@ -77,31 +77,6 @@
   list-style: none;
 }
 
-.career-list {
-  display: flex;
-  flex-direction: column;
-  gap: 0.9rem;
-  margin: 0;
-  padding: 0 0 0 1.25rem;
-  list-style: none;
-  border-inline-start: 2px solid var(--ui-border);
-}
-
-.career-item {
-  position: relative;
-}
-
-.career-item::before {
-  content: "";
-  position: absolute;
-  top: 1.15rem;
-  inset-inline-start: calc(-1.25rem - 5px);
-  width: 0.55rem;
-  height: 0.55rem;
-  border-radius: 9999px;
-  background: var(--ui-primary);
-}
-
 .career-period,
 .career-org,
 .project-org {

@@ -25,12 +25,18 @@ export type ProjectFile = {
   items: Project[]
 }
 
+/** Categories a path step may carry. Retail and restaurant stay readable, but quiet. */
+export const experienceTags = ['education', 'professional', 'retail', 'restaurant'] as const
+
+export type ExperienceTag = typeof experienceTags[number]
+
 export type ExperienceStep = {
   id: string
   organization: string
   period: string
   title: Localized
   detail: Localized
+  tags: ExperienceTag[]
 }
 
 export type ExperienceFile = {

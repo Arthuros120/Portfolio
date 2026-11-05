@@ -5,7 +5,7 @@ import type { LocationQuery, LocationQueryValue } from 'vue-router'
  * `image` sits above `project`, so Back closes the image first.
  * Later slices add a key here when they need another layer.
  */
-export const modalQueryKeys = ['project', 'image'] as const
+export const modalQueryKeys = ['project', 'image', 'step'] as const
 
 export type ModalQueryKey = typeof modalQueryKeys[number]
 
