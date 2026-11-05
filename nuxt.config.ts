@@ -1,4 +1,7 @@
+import { loadPortfolioContent } from './content/load.mjs'
 import scssTailwindEntry from './scss-tailwind-entry.mjs'
+
+const portfolio = loadPortfolioContent()
 
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
@@ -28,6 +31,12 @@ export default defineNuxtConfig({
     storage: 'localStorage',
     storageKey: 'nuxt-color-mode',
     disableTransition: true
+  },
+
+  runtimeConfig: {
+    public: {
+      portfolio
+    }
   },
 
   routeRules: {
@@ -79,7 +88,8 @@ export default defineNuxtConfig({
         'lucide:swords',
         'lucide:mountain',
         'lucide:gamepad-2',
-        'lucide:music'
+        'lucide:music',
+        'lucide:instagram'
       ]
     }
   }

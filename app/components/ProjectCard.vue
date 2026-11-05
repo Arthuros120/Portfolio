@@ -1,19 +1,28 @@
 <script setup lang="ts">
+import { resolveHttpsUrl } from '~/utils/public-links'
+
 /**
- * One example project. The flag marks it as a placeholder, not client work.
+ * One project card. Placeholder entries stay marked, and the link stays
+ * closed until the content file holds a real https URL.
  */
-defineProps<{
+const props = defineProps<{
   title: string
   description: string
   stack: string[]
+  placeholder: boolean
+  link: string | null
 }>()
 
 const { t } = useI18n()
+const href = computed(() => resolveHttpsUrl(props.link))
 </script>
 
 <template>
   <UCard class="project-card">
-    <p class="project-flag">
+    <p
+      v-if="placeholder"
+      class="project-flag"
+    >
       {{ t('projects.flag') }}
     </p>
     <h3 class="project-title">
@@ -36,6 +45,16 @@ const { t } = useI18n()
       </li>
     </ul>
     <UButton
+      v-if="href"
+      class="project-link"
+      color="neutral"
+      :label="t('projects.view')"
+      target="_blank"
+      :to="href"
+      variant="outline"
+    />
+    <UButton
+      v-else
       class="project-link"
       color="neutral"
       disabled

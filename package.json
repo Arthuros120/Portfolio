@@ -23,7 +23,8 @@
     "eslint-plugin-better-tailwindcss": "^4.10.0",
     "sass": "^1.107.1",
     "typescript": "^6.0.3",
-    "vue-tsc": "^3.3.14"
+    "vue-tsc": "^3.3.14",
+    "yaml": "^2.9.1"
   },
   "packageManager": "pnpm@12.15.0"
 }

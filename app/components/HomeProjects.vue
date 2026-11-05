@@ -1,33 +1,22 @@
 <script setup lang="ts">
 /**
- * Example project cards. Each one is labeled as a placeholder.
+ * Example project cards loaded from validated YAML.
  */
 const root = ref<HTMLElement | null>(null)
 useSectionReveal(root)
 
-const { t } = useI18n()
+const { locale, t } = useI18n()
+const { projects } = usePortfolioContent()
 
-function stack(key: 'projects.taskManager.stack' | 'projects.desktop.stack' | 'projects.dashboard.stack') {
-  return t(key).split(' · ').map(item => item.trim()).filter(Boolean)
-}
-
-const cards = computed(() => [
-  {
-    title: t('projects.taskManager.title'),
-    description: t('projects.taskManager.description'),
-    stack: stack('projects.taskManager.stack')
-  },
-  {
-    title: t('projects.desktop.title'),
-    description: t('projects.desktop.description'),
-    stack: stack('projects.desktop.stack')
-  },
-  {
-    title: t('projects.dashboard.title'),
-    description: t('projects.dashboard.description'),
-    stack: stack('projects.dashboard.stack')
-  }
-])
+const lead = computed(() => localized(projects.lead, locale.value))
+const cards = computed(() => projects.items.map(item => ({
+  id: item.id,
+  title: localized(item.title, locale.value),
+  description: localized(item.description, locale.value),
+  stack: item.stack,
+  placeholder: item.placeholder,
+  link: item.link
+})))
 </script>
 
 <template>
@@ -43,13 +32,15 @@ const cards = computed(() => [
       title-id="projects-title"
     />
     <p class="section-lead">
-      {{ t('projects.lead') }}
+      {{ lead }}
     </p>
     <div class="project-grid">
       <ProjectCard
         v-for="card in cards"
-        :key="card.title"
+        :key="card.id"
         :description="card.description"
+        :link="card.link"
+        :placeholder="card.placeholder"
         :stack="card.stack"
         :title="card.title"
       />
