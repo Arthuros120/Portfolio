@@ -21,6 +21,7 @@ export default defineNuxtConfig({
     '~/assets/scss/focus.scss',
     '~/assets/scss/hero.scss',
     '~/assets/scss/sections.scss',
+    '~/assets/scss/skills.scss',
     '~/assets/scss/projects.scss',
     '~/assets/scss/career.scss',
     '~/assets/scss/modal.scss'
@@ -92,7 +93,14 @@ export default defineNuxtConfig({
         'lucide:mountain',
         'lucide:gamepad-2',
         'lucide:music',
-        'lucide:instagram'
+        'lucide:instagram',
+        'simple-icons:typescript',
+        'simple-icons:kotlin',
+        'simple-icons:nuxt',
+        'simple-icons:adonisjs',
+        'simple-icons:symfony',
+        'simple-icons:tauri',
+        'simple-icons:postgresql'
       ]
     }
   }

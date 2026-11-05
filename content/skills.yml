@@ -1,26 +1,53 @@
 lead:
   fr: "[PLACEHOLDER] Courte introduction des compétences ci-dessous."
   en: "[PLACEHOLDER] Short introduction to the skills below."
-groups:
-  - id: languages
-    title:
-      fr: "Langages"
-      en: "Languages"
-    items:
-      - TypeScript
-      - Kotlin
-  - id: frameworks
-    title:
-      fr: "Frameworks et stack"
-      en: "Frameworks and stack"
-    items:
-      - Nuxt
-      - AdonisJS
-      - Symfony
-      - Tauri 2
-  - id: data
-    title:
-      fr: "Données"
-      en: "Data"
-    items:
-      - PostgreSQL
+items:
+  - id: typescript
+    category: languages
+    label: TypeScript
+    icon: i-simple-icons-typescript
+    blurb:
+      fr: "[PLACEHOLDER]"
+      en: "[PLACEHOLDER]"
+  - id: kotlin
+    category: languages
+    label: Kotlin
+    icon: i-simple-icons-kotlin
+    blurb:
+      fr: "[PLACEHOLDER]"
+      en: "[PLACEHOLDER]"
+  - id: nuxt
+    category: frameworks
+    label: Nuxt
+    icon: i-simple-icons-nuxt
+    blurb:
+      fr: "[PLACEHOLDER]"
+      en: "[PLACEHOLDER]"
+  - id: adonisjs
+    category: frameworks
+    label: AdonisJS
+    icon: i-simple-icons-adonisjs
+    blurb:
+      fr: "[PLACEHOLDER]"
+      en: "[PLACEHOLDER]"
+  - id: symfony
+    category: frameworks
+    label: Symfony
+    icon: i-simple-icons-symfony
+    blurb:
+      fr: "[PLACEHOLDER]"
+      en: "[PLACEHOLDER]"
+  - id: tauri
+    category: frameworks
+    label: "Tauri 2"
+    icon: i-simple-icons-tauri
+    blurb:
+      fr: "[PLACEHOLDER]"
+      en: "[PLACEHOLDER]"
+  - id: postgresql
+    category: data
+    label: PostgreSQL
+    icon: i-simple-icons-postgresql
+    blurb:
+      fr: "[PLACEHOLDER]"
+      en: "[PLACEHOLDER]"

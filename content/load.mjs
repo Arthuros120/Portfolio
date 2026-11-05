@@ -7,14 +7,14 @@ const root = join(dirname(fileURLToPath(import.meta.url)))
 const localeRoot = join(root, '../i18n/locales')
 const publicRoot = join(root, '../public')
 
-const requiredSkills = [
-  'TypeScript',
-  'Kotlin',
-  'Nuxt',
-  'AdonisJS',
-  'Symfony',
-  'PostgreSQL',
-  'Tauri 2'
+const skillCatalog = [
+  { id: 'typescript', category: 'languages', label: 'TypeScript', icon: 'i-simple-icons-typescript' },
+  { id: 'kotlin', category: 'languages', label: 'Kotlin', icon: 'i-simple-icons-kotlin' },
+  { id: 'nuxt', category: 'frameworks', label: 'Nuxt', icon: 'i-simple-icons-nuxt' },
+  { id: 'adonisjs', category: 'frameworks', label: 'AdonisJS', icon: 'i-simple-icons-adonisjs' },
+  { id: 'symfony', category: 'frameworks', label: 'Symfony', icon: 'i-simple-icons-symfony' },
+  { id: 'tauri', category: 'frameworks', label: 'Tauri 2', icon: 'i-simple-icons-tauri' },
+  { id: 'postgresql', category: 'data', label: 'PostgreSQL', icon: 'i-simple-icons-postgresql' }
 ]
 
 const interestIds = ['sailing', 'martial-arts', 'climbing', 'games', 'dj']
@@ -518,6 +518,8 @@ function assertExperienceTags(step, path) {
 }
 
 /**
+ * Logos and usage notes. Category headings are locale strings, not YAML copy.
+ *
  * @param {unknown} skills
  */
 function assertSkills(skills) {
@@ -525,44 +527,63 @@ function assertSkills(skills) {
     fail('skills must be an object')
   }
 
-  exactKeys(skills, ['lead', 'groups'], 'skills')
+  exactKeys(skills, ['lead', 'items'], 'skills')
   localized(skills.lead, 'skills.lead')
 
-  if (!Array.isArray(skills.groups) || skills.groups.length === 0) {
-    fail('skills.groups must contain at least one group')
+  if (!Array.isArray(skills.items) || skills.items.length === 0) {
+    fail('skills.items must contain at least one skill')
   }
 
-  const names = []
+  const ids = new Set()
 
-  skills.groups.forEach((group, index) => {
-    const path = `skills.groups.${index}`
+  skills.items.forEach((item, index) => {
+    const path = `skills.items.${index}`
 
-    if (!isRecord(group)) {
+    if (!isRecord(item)) {
       fail(`${path} must be an object`)
     }
 
-    exactKeys(group, ['id', 'title', 'items'], path)
-    nonEmptyString(group.id, `${path}.id`)
-    localized(group.title, `${path}.title`)
+    exactKeys(item, ['id', 'category', 'label', 'icon', 'blurb'], path)
+    nonEmptyString(item.id, `${path}.id`)
 
-    if (!Array.isArray(group.items) || group.items.length === 0) {
-      fail(`${path}.items must list at least one skill`)
+    const known = skillCatalog.find(entry => entry.id === item.id)
+
+    if (!known) {
+      fail(`${path}.id is not a known skill`)
     }
 
-    group.items.forEach((item, itemIndex) => {
-      nonEmptyString(item, `${path}.items.${itemIndex}`)
+    if (typeof item.id === 'string' && ids.has(item.id)) {
+      fail(`${path}.id is duplicated`)
+    }
 
-      if (typeof item === 'string') {
-        names.push(item)
-      }
-    })
+    if (typeof item.id === 'string') {
+      ids.add(item.id)
+    }
+
+    if (!known) {
+      return
+    }
+
+    if (item.category !== known.category) {
+      fail(`${path}.category must be ${known.category}`)
+    }
+
+    if (item.label !== known.label) {
+      fail(`${path}.label must stay ${known.label}`)
+    }
+
+    if (item.icon !== known.icon) {
+      fail(`${path}.icon must be the bundled ${known.icon} icon`)
+    }
+
+    localized(item.blurb, `${path}.blurb`)
   })
 
-  const unique = [...new Set(names)].sort()
-  const expected = [...requiredSkills].sort()
+  const expected = skillCatalog.map(entry => entry.id).sort()
+  const actual = [...ids].sort()
 
-  if (unique.join('|') !== expected.join('|')) {
-    fail(`skills must list exactly ${expected.join(', ')}`)
+  if (actual.join('|') !== expected.join('|')) {
+    fail(`skills.items must list ${skillCatalog.map(entry => entry.label).join(', ')}`)
   }
 }
 
