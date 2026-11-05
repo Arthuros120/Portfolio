@@ -1,14 +1,36 @@
 <script setup lang="ts">
 /**
- * Switches between the two supported locales. The URL keeps the choice.
+ * Switches between French and English.
+ * The other language opens on the section currently in view.
  */
+const route = useRoute()
 const { locale, t } = useI18n()
 const switchLocalePath = useSwitchLocalePath()
+const active = useActiveSection()
+const clientReady = ref(false)
 
 const locales = [
   { code: 'fr', label: 'locale.fr' },
   { code: 'en', label: 'locale.en' }
 ] as const
+
+onMounted(() => {
+  clientReady.value = true
+})
+
+function localeTo(code: 'fr' | 'en') {
+  const path = switchLocalePath(code).replace(/#.*$/, '')
+
+  if (!clientReady.value) {
+    return path
+  }
+
+  if (active.value !== 'top') {
+    return `${path}#${active.value}`
+  }
+
+  return route.hash ? `${path}${route.hash}` : path
+}
 </script>
 
 <template>
@@ -20,9 +42,9 @@ const locales = [
       v-for="item in locales"
       :key="item.code"
       color="neutral"
-      size="sm"
       :aria-current="locale === item.code ? 'true' : undefined"
-      :to="switchLocalePath(item.code)"
+      :locale="false"
+      :to="localeTo(item.code)"
       :variant="locale === item.code ? 'solid' : 'ghost'"
     >
       {{ t(item.label) }}

@@ -4,6 +4,9 @@
   },
   "nav": {
     "label": "Navigation principale",
+    "menu": "Menu",
+    "open": "Ouvrir le menu",
+    "close": "Fermer le menu",
     "projects": "Projets",
     "career": "Parcours",
     "skills": "Compétences",
@@ -17,7 +20,7 @@
     "label": "Thème",
     "light": "Clair",
     "dark": "Sombre",
-    "system": "Auto"
+    "system": "Système"
   },
   "locale": {
     "label": "Langue",
@@ -30,7 +33,8 @@
     "linkedin": "LinkedIn",
     "instagram": "Instagram",
     "tagline": "Construit à la voile",
-    "copyright": "© {year} {name}"
+    "copyright": "© {year} {name}",
+    "external": "{name} (nouvel onglet)"
   },
   "hero": {
     "place": "[TO PROVIDE]",

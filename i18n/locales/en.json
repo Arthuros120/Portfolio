@@ -3,7 +3,10 @@
     "name": "Arthur Hamelin"
   },
   "nav": {
-    "label": "Primary",
+    "label": "Primary navigation",
+    "menu": "Menu",
+    "open": "Open menu",
+    "close": "Close menu",
     "projects": "Projects",
     "career": "Career",
     "skills": "Skills",
@@ -17,7 +20,7 @@
     "label": "Theme",
     "light": "Light",
     "dark": "Dark",
-    "system": "Auto"
+    "system": "System"
   },
   "locale": {
     "label": "Language",
@@ -30,7 +33,8 @@
     "linkedin": "LinkedIn",
     "instagram": "Instagram",
     "tagline": "Built under sail",
-    "copyright": "© {year} {name}"
+    "copyright": "© {year} {name}",
+    "external": "{name} (new tab)"
   },
   "hero": {
     "place": "[TO PROVIDE]",

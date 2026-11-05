@@ -8,11 +8,6 @@ html {
   min-height: 100vh;
   flex-direction: column;
   background-color: var(--ui-bg);
-  background-image: radial-gradient(
-    ellipse 90% 36rem at 50% -8rem,
-    color-mix(in oklch, var(--ui-primary) 22%, transparent),
-    transparent 70%
-  );
   color: var(--ui-text);
 }
 
@@ -23,13 +18,63 @@ html {
   padding: 0.5rem 1rem 3rem;
 }
 
+.site-header {
+  height: auto;
+  min-height: var(--ui-header-height, 4rem);
+  overflow: visible;
+  box-shadow: none;
+  background-color: color-mix(in oklch, var(--ui-bg) 78%, transparent);
+
+  &.is-scrolled {
+    background-color: color-mix(in oklch, var(--ui-bg) 92%, transparent);
+  }
+
+  [data-slot="container"] {
+    height: auto;
+    min-height: var(--ui-header-height, 4rem);
+  }
+
+  [data-slot="left"],
+  [data-slot="right"] {
+    flex: 0 0 auto;
+  }
+
+  // The labeled controls need the full row. Until then, the menu holds them.
+  [data-slot="center"] {
+    @media (width < 78rem) {
+      display: none;
+    }
+  }
+}
+
+.site-wordmark {
+  display: inline-flex;
+  align-items: center;
+  min-height: 2.75rem;
+  color: var(--ui-text-highlighted);
+  font-weight: 600;
+  letter-spacing: -0.03em;
+  text-decoration: none;
+}
+
 .header-tools {
   display: none;
   align-items: center;
-  gap: 0.5rem;
+  gap: 0.35rem;
 
-  @media (min-width: 64rem) {
+  @media (min-width: 78rem) {
     display: flex;
+    flex-wrap: nowrap;
+  }
+}
+
+.menu-toggle {
+  display: inline-flex;
+  min-width: 2.75rem;
+  min-height: 2.75rem;
+
+  @media (min-width: 78rem) {
+    display: none;
   }
 }
 
@@ -48,6 +93,21 @@ html {
   flex-wrap: wrap;
   align-items: center;
   gap: 0.25rem;
+}
+
+.header-tools .theme-toggle,
+.header-tools .locale-switch {
+  flex-wrap: nowrap;
+}
+
+.theme-toggle a,
+.theme-toggle button,
+.locale-switch a,
+.locale-switch button,
+.footer-links a,
+.footer-links button,
+.site-nav a {
+  min-height: 2.75rem;
 }
 
 .footer-links {

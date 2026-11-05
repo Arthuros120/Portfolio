@@ -21,15 +21,21 @@ const labels = {
   contact: 'nav.contact'
 } as const
 
-const items = computed(() => navSectionIds.map(id => ({
-  label: t(labels[id]),
-  to: `${localePath('/')}#${id}`,
-  active: active.value === id
-})))
+const items = computed(() => navSectionIds.map((id) => {
+  const current = active.value === id
+
+  return {
+    label: t(labels[id]),
+    to: `${localePath('/')}#${id}`,
+    active: current,
+    ...(current ? { 'aria-current': 'location' as const } : {})
+  }
+}))
 </script>
 
 <template>
   <UNavigationMenu
+    class="site-nav"
     :aria-label="t('nav.label')"
     color="primary"
     :highlight="false"

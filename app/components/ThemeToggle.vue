@@ -62,7 +62,6 @@ async function onKeydown(event: KeyboardEvent) {
         v-for="mode in modes"
         :key="mode.value"
         color="neutral"
-        size="sm"
         :aria-checked="selected === mode.value"
         :icon="mode.icon"
         :label="mode.label"
@@ -85,7 +84,6 @@ async function onKeydown(event: KeyboardEvent) {
           disabled
           :icon="mode.icon"
           :label="mode.label"
-          size="sm"
           tabindex="-1"
           variant="ghost"
         />
