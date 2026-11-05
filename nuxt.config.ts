@@ -22,6 +22,7 @@ export default defineNuxtConfig({
     '~/assets/scss/hero.scss',
     '~/assets/scss/sections.scss',
     '~/assets/scss/skills.scss',
+    '~/assets/scss/about.scss',
     '~/assets/scss/projects.scss',
     '~/assets/scss/career.scss',
     '~/assets/scss/modal.scss'

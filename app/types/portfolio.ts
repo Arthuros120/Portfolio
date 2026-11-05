@@ -76,12 +76,17 @@ export type SkillFile = {
   items: Skill[]
 }
 
+/** The DJ entry is a profession. Other interests omit this field. */
+export type InterestStatus = 'professional'
+
 export type Interest = {
   id: string
   icon: string
-  wide: boolean
   title: Localized
   detail: Localized
+  status?: InterestStatus
+  club?: Localized
+  genres?: Localized
 }
 
 export type InterestFile = {

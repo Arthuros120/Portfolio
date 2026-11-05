@@ -4,7 +4,6 @@ lead:
 items:
   - id: sailing
     icon: "i-lucide-sailboat"
-    wide: true
     title:
       fr: "Voile"
       en: "Sailing"
@@ -13,16 +12,14 @@ items:
       en: "[PLACEHOLDER]"
   - id: martial-arts
     icon: "i-lucide-swords"
-    wide: false
     title:
       fr: "Sports de combat"
-      en: "Martial arts"
+      en: "Combat sports"
     detail:
       fr: "Jiu-jitsu, boxe"
       en: "Jiu-jitsu, boxing"
   - id: climbing
     icon: "i-lucide-mountain"
-    wide: false
     title:
       fr: "Escalade"
       en: "Climbing"
@@ -31,7 +28,6 @@ items:
       en: "[PLACEHOLDER]"
   - id: games
     icon: "i-lucide-gamepad-2"
-    wide: false
     title:
       fr: "Jeux vidéo"
       en: "Video games"
@@ -40,10 +36,16 @@ items:
       en: "[PLACEHOLDER]"
   - id: dj
     icon: "i-lucide-music"
-    wide: false
+    status: professional
     title:
-      fr: "DJ"
-      en: "DJ"
+      fr: "DJ professionnel"
+      en: "Professional DJ"
     detail:
-      fr: "[TO PROVIDE] Nom du club"
-      en: "[TO PROVIDE] Club name"
+      fr: "[PLACEHOLDER]"
+      en: "[PLACEHOLDER]"
+    club:
+      fr: "[TO PROVIDE]"
+      en: "[TO PROVIDE]"
+    genres:
+      fr: "[PLACEHOLDER]"
+      en: "[PLACEHOLDER]"
