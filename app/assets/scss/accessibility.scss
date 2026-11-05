@@ -1,0 +1,133 @@
+// Atkinson Hyperlegible (SIL Open Font License, app/assets/fonts/OFL.txt).
+// The files are part of the build. Nothing is fetched from a font CDN.
+
+@font-face {
+  font-family: "Atkinson Hyperlegible";
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("../fonts/atkinson-hyperlegible-latin-400-normal.woff2") format("woff2");
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+@font-face {
+  font-family: "Atkinson Hyperlegible";
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url("../fonts/atkinson-hyperlegible-latin-700-normal.woff2") format("woff2");
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+html[data-a11y-font="dyslexia"] {
+  --font-sans: "Atkinson Hyperlegible", ui-sans-serif, system-ui, sans-serif;
+}
+
+html[data-a11y-font="dyslexia"] .section-lead,
+html[data-a11y-font="dyslexia"] .hero-intro,
+html[data-a11y-font="dyslexia"] .career-summary {
+  max-width: 36rem;
+}
+
+html[data-a11y-text="lg"] {
+  font-size: 112.5%;
+}
+
+html[data-a11y-text="xl"] {
+  font-size: 125%;
+}
+
+// Light theme paints white labels on sky 500, which is below WCAG AA.
+// Dark theme already uses dark labels on a lighter sky and clears AA,
+// so this only deepens the light theme. Hover stays opaque.
+html[data-a11y-contrast="strong"]:not(.dark) {
+  --ui-primary: var(--ui-color-primary-700);
+}
+
+html[data-a11y-contrast="strong"]:not(.dark) :is(a, button)[class*="bg-primary"]:hover,
+html[data-a11y-contrast="strong"]:not(.dark) :is(a, button)[class*="bg-primary"]:active {
+  background-color: var(--ui-color-primary-800);
+}
+
+.a11y-control {
+  position: relative;
+  flex: 0 0 auto;
+}
+
+.a11y-trigger,
+.a11y-close,
+.a11y-switch,
+.a11y-sizes button {
+  min-width: 2.75rem;
+  min-height: 2.75rem;
+}
+
+.a11y-panel {
+  position: fixed;
+  z-index: 40;
+  inset-inline-end: 0.75rem;
+  top: calc(var(--site-header-offset, 4.75rem) + 0.25rem);
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 0.85rem 0.5rem;
+  width: min(20rem, calc(100vw - 1.5rem));
+  max-height: calc(100dvh - var(--site-header-offset, 4.75rem) - 1rem);
+  overflow: auto;
+  padding: 0.9rem;
+  border: 1px solid color-mix(in oklch, var(--ui-text) 18%, transparent);
+  border-radius: 1rem;
+  background-color: var(--ui-bg);
+}
+
+.a11y-panel-title {
+  margin: 0;
+  align-self: center;
+  color: var(--ui-text-highlighted);
+  font-weight: 600;
+}
+
+.a11y-close {
+  grid-column: 2;
+  grid-row: 1;
+}
+
+.a11y-font,
+.a11y-text,
+.a11y-contrast {
+  grid-column: 1 / -1;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  gap: 0.45rem;
+  min-width: 0;
+}
+
+.a11y-label {
+  margin: 0;
+  color: var(--ui-text);
+  font-family: var(--font-mono);
+  font-size: 0.8125rem;
+}
+
+.a11y-switch {
+  justify-content: flex-start;
+  white-space: normal;
+  text-align: start;
+}
+
+.a11y-hint {
+  margin: 0;
+  color: var(--ui-text);
+  font-size: 0.8125rem;
+}
+
+.a11y-sizes {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem;
+}
+
+.a11y-sizes button {
+  flex: 1 1 5.5rem;
+  justify-content: center;
+}

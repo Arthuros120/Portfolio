@@ -1,11 +1,13 @@
 html {
-  scroll-padding-top: calc(var(--ui-header-height, 4rem) + 0.75rem);
+  scroll-padding-top: var(--site-header-offset, calc(var(--ui-header-height, 4rem) + 0.75rem));
+  overflow-x: clip;
   font-family: var(--font-sans);
 }
 
 .site-shell {
   display: flex;
   min-height: 100vh;
+  max-width: 100%;
   flex-direction: column;
   background-color: var(--ui-bg);
   color: var(--ui-text);
@@ -32,15 +34,30 @@ html {
   [data-slot="container"] {
     height: auto;
     min-height: var(--ui-header-height, 4rem);
+    max-width: 100%;
+    flex-wrap: wrap;
+    row-gap: 0.25rem;
   }
 
-  [data-slot="left"],
+  // The wordmark shrinks before the page scrolls sideways.
+  // The controls keep their touch size and wrap onto the next row.
+  [data-slot="left"] {
+    flex: 1 1 auto;
+    min-width: 0;
+  }
+
   [data-slot="right"] {
-    flex: 0 0 auto;
+    flex: 1 1 auto;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+    min-width: 0;
+    max-width: 100%;
   }
 
   // The labeled controls need the full row. Until then, the menu holds them.
   [data-slot="center"] {
+    min-width: 0;
+
     @media (width < 78rem) {
       display: none;
     }
@@ -50,10 +67,15 @@ html {
 .site-wordmark {
   display: inline-flex;
   align-items: center;
+  min-width: 0;
+  max-width: 100%;
   min-height: 2.75rem;
+  overflow: hidden;
   color: var(--ui-text-highlighted);
   font-weight: 600;
   letter-spacing: -0.03em;
+  text-overflow: ellipsis;
+  white-space: nowrap;
   text-decoration: none;
 }
 
@@ -64,7 +86,9 @@ html {
 
   @media (min-width: 78rem) {
     display: flex;
-    flex-wrap: nowrap;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+    max-width: 100%;
   }
 }
 

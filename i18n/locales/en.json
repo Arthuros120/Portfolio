@@ -14,7 +14,20 @@
     "contact": "Contact"
   },
   "a11y": {
-    "skipToContent": "Skip to content"
+    "skipToContent": "Skip to content",
+    "open": "Accessibility options",
+    "close": "Close accessibility options",
+    "panel": "Accessibility",
+    "font": "Font",
+    "dyslexia": "Dyslexia-friendly font",
+    "dyslexiaHint": "Atkinson Hyperlegible",
+    "textSize": "Text size",
+    "textMd": "Default",
+    "textLg": "Large",
+    "textXl": "Larger",
+    "contrast": "Contrast",
+    "contrastStrong": "Stronger contrast",
+    "contrastHint": "Darker sky on light-theme buttons and focus"
   },
   "theme": {
     "label": "Theme",
