@@ -17,16 +17,15 @@ const skillCatalog = [
   { id: 'postgresql', category: 'data', label: 'PostgreSQL', icon: 'i-simple-icons-postgresql' }
 ]
 
-const interestIds = ['sailing', 'martial-arts', 'climbing', 'games', 'dj']
-
 const experienceTags = ['education', 'professional', 'retail', 'restaurant']
 
-const interestIcons = [
-  'i-lucide-sailboat',
-  'i-lucide-swords',
-  'i-lucide-mountain',
-  'i-lucide-gamepad-2',
-  'i-lucide-music'
+/** Fixed order. The DJ entry is the only one with professional fields. */
+const interestCatalog = [
+  { id: 'sailing', icon: 'i-lucide-sailboat' },
+  { id: 'martial-arts', icon: 'i-lucide-swords' },
+  { id: 'climbing', icon: 'i-lucide-mountain' },
+  { id: 'games', icon: 'i-lucide-gamepad-2' },
+  { id: 'dj', icon: 'i-lucide-music' }
 ]
 
 const contentFiles = [
@@ -864,35 +863,85 @@ function assertInterests(interests) {
     fail('interests.items must be a list')
   }
 
-  const ids = []
+  if (interests.items.length !== interestCatalog.length) {
+    fail(`interests.items must be ${interestCatalog.map(item => item.id).join(', ')} in that order`)
+  }
 
   interests.items.forEach((item, index) => {
     const path = `interests.items.${index}`
+    const expected = interestCatalog[index]
 
-    if (!isRecord(item)) {
+    if (!isRecord(item) || !expected) {
       fail(`${path} must be an object`)
     }
 
-    exactKeys(item, ['id', 'icon', 'wide', 'title', 'detail'], path)
-    nonEmptyString(item.id, `${path}.id`)
+    const isDj = expected.id === 'dj'
 
-    if (typeof item.id === 'string') {
-      ids.push(item.id)
+    exactKeys(
+      item,
+      isDj
+        ? ['id', 'icon', 'status', 'title', 'detail', 'club', 'genres']
+        : ['id', 'icon', 'title', 'detail'],
+      path
+    )
+
+    if (item.id !== expected.id) {
+      fail(`${path}.id must be ${expected.id}`)
     }
 
-    if (typeof item.icon !== 'string' || !interestIcons.includes(item.icon)) {
-      fail(`${path}.icon is not a bundled interest icon`)
-    }
-
-    if (typeof item.wide !== 'boolean') {
-      fail(`${path}.wide must be a boolean`)
+    if (item.icon !== expected.icon) {
+      fail(`${path}.icon must be the bundled icon ${expected.icon}`)
     }
 
     localized(item.title, `${path}.title`)
     localized(item.detail, `${path}.detail`)
-  })
+    assertInterestCopy(item.title, `${path}.title`)
+    assertInterestCopy(item.detail, `${path}.detail`)
 
-  if (ids.join('|') !== interestIds.join('|')) {
-    fail(`interests.items must be ${interestIds.join(', ')} in that order`)
+    if (!isDj) {
+      return
+    }
+
+    if (item.status !== 'professional') {
+      fail(`${path}.status must be professional`)
+    }
+
+    localized(item.club, `${path}.club`)
+    localized(item.genres, `${path}.genres`)
+    assertInterestCopy(item.club, `${path}.club`)
+    assertInterestCopy(item.genres, `${path}.genres`)
+  })
+}
+
+/**
+ * Interest copy stays public and short. No contact details, links, or photos.
+ *
+ * @param {unknown} value
+ * @param {string} path
+ */
+function assertInterestCopy(value, path) {
+  if (!isRecord(value)) {
+    return
+  }
+
+  for (const locale of ['fr', 'en']) {
+    const text = value[locale]
+    const field = `${path}.${locale}`
+
+    if (typeof text !== 'string') {
+      continue
+    }
+
+    if (/https?:\/\//i.test(text) || /@/.test(text)) {
+      fail(`${field} must not include a link or an email address`)
+    }
+
+    if (/\b(?:\+?\d[\d\s().-]{7,}\d)\b/.test(text)) {
+      fail(`${field} must not include a phone number`)
+    }
+
+    if (mediaFilePattern.test(text)) {
+      fail(`${field} must not include a photo or other media file`)
+    }
   }
 }

@@ -66,6 +66,10 @@
     "aboutKicker": "about",
     "contactKicker": "contact"
   },
+  "about": {
+    "club": "Club name",
+    "genres": "Genres"
+  },
   "skills": {
     "categories": {
       "languages": "Languages",

@@ -24,8 +24,7 @@
   line-height: 1.6;
 }
 
-.project-grid,
-.about-grid {
+.project-grid {
   display: grid;
   gap: 0.9rem;
 }
@@ -48,7 +47,6 @@
 }
 
 .project-title,
-.about-title,
 .career-title {
   margin: 0 0 0.45rem;
   color: var(--ui-text-highlighted);
@@ -57,8 +55,7 @@
 }
 
 .project-description,
-.career-detail,
-.about-detail {
+.career-detail {
   margin: 0 0 1rem;
   color: var(--ui-text);
   line-height: 1.5;
@@ -80,37 +77,6 @@
   color: var(--ui-text);
   font-family: var(--font-mono);
   font-size: 0.8125rem;
-}
-
-.about-card {
-  height: 100%;
-}
-
-.about-grid {
-  margin: 0;
-  padding: 0;
-  list-style: none;
-
-  @media (min-width: 48rem) {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
-
-  @media (min-width: 64rem) {
-    grid-template-columns: repeat(4, minmax(0, 1fr));
-  }
-}
-
-.about-card-wide {
-  @media (min-width: 48rem) {
-    grid-column: 1 / -1;
-  }
-}
-
-.about-icon {
-  display: block;
-  margin-bottom: 0.55rem;
-  color: var(--ui-text);
-  font-size: 1.25rem;
 }
 
 .contact-actions {

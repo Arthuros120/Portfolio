@@ -1,6 +1,7 @@
 <script setup lang="ts">
 /**
  * Sailing and the other confirmed interests, from validated YAML.
+ * Cards stay static: no interest includes a longer story.
  */
 const root = ref<HTMLElement | null>(null)
 useSectionReveal(root)
@@ -12,9 +13,10 @@ const lead = computed(() => localized(interests.lead, locale.value))
 const cards = computed(() => interests.items.map(item => ({
   id: item.id,
   icon: item.icon,
-  wide: item.wide,
   title: localized(item.title, locale.value),
-  detail: localized(item.detail, locale.value)
+  detail: localized(item.detail, locale.value),
+  club: item.club ? localized(item.club, locale.value) : undefined,
+  genres: item.genres ? localized(item.genres, locale.value) : undefined
 })))
 </script>
 
@@ -38,21 +40,14 @@ const cards = computed(() => interests.items.map(item => ({
         v-for="card in cards"
         :key="card.id"
         class="about-item"
-        :class="{ 'about-card-wide': card.wide }"
       >
-        <UCard class="about-card">
-          <UIcon
-            :name="card.icon"
-            class="about-icon"
-            aria-hidden="true"
-          />
-          <h3 class="about-title">
-            {{ card.title }}
-          </h3>
-          <p class="about-detail">
-            {{ card.detail }}
-          </p>
-        </UCard>
+        <InterestCard
+          :club="card.club"
+          :detail="card.detail"
+          :genres="card.genres"
+          :icon="card.icon"
+          :title="card.title"
+        />
       </li>
     </ul>
   </section>
