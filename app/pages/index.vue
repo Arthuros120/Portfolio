@@ -1,3 +1,3 @@
 <template>
-  <div />
+  <AppPageHeading message="nav.home" />
 </template>

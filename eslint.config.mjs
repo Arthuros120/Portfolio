@@ -14,6 +14,20 @@ export default withNuxt(
           ['^v-bind:ui$', [{ match: 'objectValues' }]]
         ]
       }
+    },
+    rules: {
+      // Classes defined in app/assets/css, loaded from nuxt.config.ts.
+      'better-tailwindcss/no-unknown-classes': ['error', {
+        ignore: [
+          '^site-(shell|main|menu-tools|footer)$',
+          '^page-title$',
+          '^header-tools$',
+          '^theme-toggle$',
+          '^locale-switch$',
+          '^footer-links$',
+          '^skip-link$'
+        ]
+      }]
     }
   }
 )
