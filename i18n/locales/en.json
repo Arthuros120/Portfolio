@@ -60,6 +60,17 @@
     "linkPending": "[TO PROVIDE]",
     "view": "View project"
   },
+  "modal": {
+    "close": "Close",
+    "placeholderFlag": "[PLACEHOLDER]",
+    "placeholderOpen": "[PLACEHOLDER] Open modal",
+    "placeholderTitle": "[PLACEHOLDER] Modal preview",
+    "placeholderBody": "[PLACEHOLDER] This dialog only proves shareable links. It is not a project.",
+    "placeholderId": "Identifier: {id}",
+    "placeholderImageOpen": "[PLACEHOLDER] Open image layer",
+    "placeholderImageTitle": "[PLACEHOLDER] Image layer",
+    "placeholderImageBody": "[PLACEHOLDER] This second layer proves that Back closes the top dialog."
+  },
   "availability": {
     "open": "Open to interim work, freelance, fixed-term and permanent roles.",
     "until": "On an interim contract until {date}.",

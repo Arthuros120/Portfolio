@@ -1,0 +1,119 @@
+// Sober glass dialog. No glow, no heavy shadow.
+// The panel is portaled to the body, so these rules are global.
+
+.site-modal-layer-project {
+  z-index: 80;
+}
+
+.site-modal-layer-image {
+  z-index: 90;
+}
+
+.site-modal-overlay {
+  background-color: color-mix(in oklch, black 46%, transparent);
+}
+
+.site-modal-panel {
+  border: 1px solid color-mix(in oklch, var(--ui-border) 70%, transparent);
+  background-color: color-mix(in oklch, var(--ui-bg) 86%, transparent);
+  box-shadow: none;
+  backdrop-filter: blur(18px) saturate(1.12);
+
+  [data-slot="header"] {
+    padding-inline-end: 4.25rem;
+  }
+
+  [data-slot="title"],
+  [data-slot="description"] {
+    text-wrap: pretty;
+  }
+}
+
+.site-modal-body {
+  min-height: 0;
+  overscroll-behavior: contain;
+}
+
+.site-modal-close {
+  position: absolute;
+  top: 1rem;
+  inset-inline-end: 1rem;
+  min-width: 2.75rem;
+  min-height: 2.75rem;
+}
+
+.site-modal-panel.site-modal-sheet {
+  width: 100%;
+  max-width: none;
+  height: 100%;
+  border-radius: 0;
+}
+
+.site-modal-panel:focus-visible {
+  outline: 2px solid var(--ui-primary);
+  outline-offset: 2px;
+}
+
+@supports not ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
+  .site-modal-panel {
+    background-color: var(--ui-bg);
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .site-modal-overlay[data-state="open"],
+  .site-modal-overlay[data-state="closed"],
+  .site-modal-panel[data-state="open"],
+  .site-modal-panel[data-state="closed"] {
+    animation-duration: 160ms;
+  }
+
+  .site-modal-panel.site-modal-sheet[data-state="open"] {
+    animation-name: fade-in;
+  }
+
+  .site-modal-panel.site-modal-sheet[data-state="closed"] {
+    animation-name: fade-out;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .site-modal-overlay,
+  .site-modal-panel {
+    animation: none !important;
+    transition: none !important;
+  }
+}
+
+@media (forced-colors: active) {
+  .site-modal-panel {
+    border: 1px solid CanvasText;
+    background-color: Canvas;
+  }
+}
+
+html.has-site-modal,
+html.has-site-modal body {
+  overflow: hidden;
+  overscroll-behavior: none;
+}
+
+.modal-placeholder {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.75rem 1rem;
+  margin-top: 1.25rem;
+}
+
+.modal-placeholder-flag,
+.modal-placeholder-id {
+  margin: 0;
+  color: var(--ui-text);
+  font-family: var(--font-mono);
+  font-size: 0.8125rem;
+}
+
+.modal-placeholder-id {
+  margin-bottom: 1rem;
+}

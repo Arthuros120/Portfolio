@@ -60,6 +60,17 @@
     "linkPending": "[TO PROVIDE]",
     "view": "Voir le projet"
   },
+  "modal": {
+    "close": "Fermer",
+    "placeholderFlag": "[PLACEHOLDER]",
+    "placeholderOpen": "[PLACEHOLDER] Ouvrir la modale",
+    "placeholderTitle": "[PLACEHOLDER] Aperçu de modale",
+    "placeholderBody": "[PLACEHOLDER] Cette fenêtre ne sert qu'à prouver les liens partageables. Ce n'est pas un projet.",
+    "placeholderId": "Identifiant : {id}",
+    "placeholderImageOpen": "[PLACEHOLDER] Ouvrir la couche image",
+    "placeholderImageTitle": "[PLACEHOLDER] Couche image",
+    "placeholderImageBody": "[PLACEHOLDER] Cette seconde couche prouve que Retour ferme la fenêtre du dessus."
+  },
   "availability": {
     "open": "Ouvert à l'intérim, au freelance, au CDD et au CDI.",
     "until": "En contrat d'intérim jusqu'au {date}.",
