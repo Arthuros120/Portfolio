@@ -5,12 +5,12 @@ import { resolveHttpsUrl, resolveInstagramUrl } from '~/utils/public-links'
  * Footer with the public profiles. Placeholder slots stay text, not links.
  */
 const { t } = useI18n()
-const { profile } = usePortfolioContent()
+const { social } = usePortfolioContent()
 const year = new Date().getFullYear()
 
-const github = computed(() => resolveHttpsUrl(profile.githubUrl))
-const linkedin = computed(() => resolveHttpsUrl(profile.linkedinUrl))
-const instagram = computed(() => resolveInstagramUrl(profile.instagramHandle))
+const github = computed(() => resolveHttpsUrl(social.githubUrl))
+const linkedin = computed(() => resolveHttpsUrl(social.linkedinUrl))
+const instagram = computed(() => resolveInstagramUrl(social.instagramHandle))
 </script>
 
 <template>
@@ -41,7 +41,7 @@ const instagram = computed(() => resolveInstagramUrl(profile.instagramHandle))
           v-else
           class="footer-slot"
         >
-          {{ t('footer.github') }} — {{ profile.githubUrl }}
+          {{ t('footer.github') }} — {{ social.githubUrl }}
         </p>
         <UButton
           v-if="linkedin"
@@ -56,7 +56,7 @@ const instagram = computed(() => resolveInstagramUrl(profile.instagramHandle))
           v-else
           class="footer-slot"
         >
-          {{ t('footer.linkedin') }} — {{ profile.linkedinUrl }}
+          {{ t('footer.linkedin') }} — {{ social.linkedinUrl }}
         </p>
         <UButton
           v-if="instagram"
@@ -71,7 +71,7 @@ const instagram = computed(() => resolveInstagramUrl(profile.instagramHandle))
           v-else
           class="footer-slot"
         >
-          {{ t('footer.instagram') }} — {{ profile.instagramHandle }}
+          {{ t('footer.instagram') }} — {{ social.instagramHandle }}
         </p>
       </nav>
     </div>

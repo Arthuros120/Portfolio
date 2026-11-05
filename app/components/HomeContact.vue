@@ -3,16 +3,16 @@ import { resolveHttpsUrl } from '~/utils/public-links'
 
 /**
  * Contact section. The control stays disabled until a public email exists.
- * LinkedIn posts stay text until the profile file holds real URLs.
+ * LinkedIn posts stay text until the social file holds real URLs.
  */
 const root = ref<HTMLElement | null>(null)
 useSectionReveal(root)
 
 const { t } = useI18n()
 const { mailto } = useContactMail()
-const { profile } = usePortfolioContent()
+const { social } = usePortfolioContent()
 
-const posts = computed(() => profile.linkedinPosts
+const posts = computed(() => social.linkedinPosts
   .map(url => resolveHttpsUrl(url))
   .filter((url): url is string => url !== null))
 </script>

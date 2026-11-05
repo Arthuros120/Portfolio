@@ -1,0 +1,14 @@
+# Career steps. Unconfirmed dates and titles stay marked.
+lead:
+  fr: "[PLACEHOLDER] Étapes du parcours. Les dates et les intitulés non confirmés restent marqués."
+  en: "[PLACEHOLDER] Career steps. Unconfirmed dates and titles stay marked."
+steps:
+  - id: isilog
+    organization: "Isilog"
+    period: "[TO PROVIDE]"
+    title:
+      fr: "[TO PROVIDE]"
+      en: "[TO PROVIDE]"
+    detail:
+      fr: "[PLACEHOLDER] Aussi appelé Easylog."
+      en: "[PLACEHOLDER] Also called Easylog."

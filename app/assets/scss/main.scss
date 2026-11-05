@@ -1,4 +1,10 @@
 /* Tailwind and Nuxt UI entry. Kept as plain CSS syntax so the Tailwind plugin can compile it. */
+/* Type tokens: system sans, monospace accents. Nothing is fetched at runtime. */
 
 @import "tailwindcss";
 @import "@nuxt/ui";
+
+@theme {
+  --font-sans: ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+  --font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+}

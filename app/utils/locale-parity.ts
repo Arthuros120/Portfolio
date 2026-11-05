@@ -18,8 +18,14 @@ function assertSameKeys(left: MessageTree, right: MessageTree, path = 'root'): v
   for (const key of leftKeys) {
     const leftValue = left[key]
     const rightValue = right[key]
+    const leftTree = isTree(leftValue)
+    const rightTree = isTree(rightValue)
 
-    if (isTree(leftValue) && isTree(rightValue)) {
+    if (leftTree !== rightTree) {
+      throw new Error(`Locale key ${path}.${key} has different shapes`)
+    }
+
+    if (leftTree && rightTree) {
       assertSameKeys(leftValue, rightValue, `${path}.${key}`)
     }
   }
