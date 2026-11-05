@@ -98,16 +98,28 @@ export type Profile = {
   email: string
 }
 
+/** One selected LinkedIn post. Empty lists are valid. Titles are bilingual. */
+export type LinkedInPost = {
+  url: string
+  title: Localized
+}
+
 export type Social = {
   githubUrl: string
   linkedinUrl: string
   instagramHandle: string
-  linkedinPosts: string[]
+  linkedinPosts: LinkedInPost[]
 }
+
+/** Contract kinds Arthur is open to, in sentence order. */
+export const contractTypes = ['interim', 'freelance', 'cdd', 'cdi'] as const
+
+export type ContractType = typeof contractTypes[number]
 
 export type Availability = {
   untilDate: string
   timeZone: string
+  openTo: ContractType[]
 }
 
 export type PortfolioContent = {

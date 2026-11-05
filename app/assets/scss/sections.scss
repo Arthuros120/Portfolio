@@ -79,43 +79,6 @@
   font-size: 0.8125rem;
 }
 
-.contact-actions {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.75rem;
-  margin-bottom: 0.75rem;
-}
-
-.contact-posts {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.75rem;
-  margin: 0 0 1rem;
-  padding: 0;
-  list-style: none;
-}
-
-.availability {
-  display: flex;
-  flex-direction: column;
-  gap: 0.35rem;
-  margin: 0 0 1.25rem;
-}
-
-.availability-open,
-.availability-status,
-.availability-count {
-  max-width: 40rem;
-  margin: 0;
-  color: var(--ui-text);
-  line-height: 1.6;
-}
-
-.availability-count {
-  min-height: 1.6em;
-  font-variant-numeric: tabular-nums;
-}
-
 @media (prefers-reduced-motion: no-preference) {
   .reveal-armed {
     transition: opacity 600ms ease, transform 600ms ease;

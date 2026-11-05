@@ -6,6 +6,7 @@
 const { locale, t } = useI18n()
 const localePath = useLocalePath()
 const { mailto } = useContactMail()
+const { statement } = useAvailabilityStatement()
 const { availability } = usePortfolioContent()
 
 const projectsHref = computed(() => `${localePath('/')}#projects`)
@@ -47,7 +48,7 @@ const availabilityStatus = computed(() => {
       </p>
       <p class="hero-availability">
         <span class="hero-availability-line">{{ availabilityStatus }}</span>
-        <span class="hero-availability-line">{{ t('availability.open') }}</span>
+        <span class="hero-availability-line">{{ statement }}</span>
       </p>
       <div class="hero-actions">
         <UButton
@@ -62,7 +63,7 @@ const availabilityStatus = computed(() => {
         id="hero-contact-note"
         class="hero-note"
       >
-        {{ t('hero.contactUnavailable') }}
+        {{ t('contact.emailMissing') }}
       </p>
     </div>
     <div class="hero-aside">

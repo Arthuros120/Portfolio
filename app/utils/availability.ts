@@ -1,4 +1,33 @@
 /**
+ * Join contract labels with a conjunction.
+ * English uses a serial comma. French puts « et » before the last item.
+ * The result is deterministic so server and client paint the same sentence.
+ */
+export function joinContractTypes(labels: readonly string[], locale: string): string {
+  if (labels.length === 0) {
+    return ''
+  }
+
+  const last = labels[labels.length - 1] ?? ''
+
+  if (labels.length === 1) {
+    return last
+  }
+
+  const head = labels.slice(0, -1).join(', ')
+
+  if (locale === 'en') {
+    if (labels.length === 2) {
+      return `${labels[0]} and ${last}`
+    }
+
+    return `${head}, and ${last}`
+  }
+
+  return `${head} et ${last}`
+}
+
+/**
  * Calendar-day countdown for the interim contract.
  * `untilDate` is the last inclusive day in `timeZone`. Availability starts
  * at the first instant of the next calendar day.

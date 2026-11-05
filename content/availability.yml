@@ -2,3 +2,9 @@
 # calendar day in timeZone (the first instant of the next day).
 untilDate: "2027-04-02"
 timeZone: "Europe/Paris"
+# Sentence order. Labels live in the locale files.
+openTo:
+  - interim
+  - freelance
+  - cdd
+  - cdi

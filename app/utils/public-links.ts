@@ -1,3 +1,5 @@
+import type { LinkedInPost } from '~/types/portfolio'
+
 const placeholderPrefix = /^\s*\[(?:TO PROVIDE|PLACEHOLDER)\b/
 const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
 const httpsPattern = /^https:\/\/\S+$/
@@ -46,4 +48,39 @@ export function resolveInstagramUrl(handle: string): string | null {
   }
 
   return `https://instagram.com/${value}`
+}
+
+/**
+ * Pre-filled mailto URL. Call it only with a real mailbox.
+ */
+export function buildMailto(email: string, subject: string, body: string): string {
+  return `mailto:${email}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`
+}
+
+export type LinkedInPostLink = {
+  url: string
+  title: string
+}
+
+/**
+ * Fallback links for posts that already have an https URL.
+ * Placeholders and empty lists contribute nothing. Nothing is embedded.
+ */
+export function resolveLinkedInPosts(posts: readonly LinkedInPost[], locale: string): LinkedInPostLink[] {
+  const links: LinkedInPostLink[] = []
+
+  for (const post of posts) {
+    const url = resolveHttpsUrl(post.url)
+
+    if (!url) {
+      continue
+    }
+
+    links.push({
+      url,
+      title: locale === 'en' ? post.title.en : post.title.fr
+    })
+  }
+
+  return links
 }

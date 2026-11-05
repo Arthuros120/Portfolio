@@ -2,9 +2,10 @@
 /**
  * Interim-contract countdown. The day count is corrected before hydration
  * so the first paint matches the visitor's calendar, without moving the layout.
- * The plain status sentence stays available to assistive tech. The day line does not.
+ * The day line is ordinary text. It is not a live region, so a tick is not announced.
  */
 const { t, locale } = useI18n()
+const { statement } = useAvailabilityStatement()
 const { availability } = usePortfolioContent()
 const { untilDate, timeZone } = availability
 
@@ -85,14 +86,14 @@ onPrehydrate((el) => {
     return
   }
 
-  count.textContent = (count.dataset.many || '').replaceAll('%%', String(remaining))
+  count.textContent = (count.dataset.many || '').replaceAll('__COUNT__', String(remaining))
 })
 </script>
 
 <template>
   <div class="availability">
     <p class="availability-open">
-      {{ t('availability.open') }}
+      {{ statement }}
     </p>
     <p
       class="availability-status"
@@ -104,11 +105,10 @@ onPrehydrate((el) => {
     <p
       class="availability-count"
       data-availability-count
-      aria-hidden="true"
       :data-until="untilDate"
       :data-zone="timeZone"
       :data-one="t('availability.countdownOne')"
-      :data-many="t('availability.countdownMany', { count: '%%' })"
+      :data-many="t('availability.countdownMany', { count: '__COUNT__' })"
     >
       {{ countdown }}
     </p>
