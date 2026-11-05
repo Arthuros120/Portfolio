@@ -31,6 +31,8 @@ const instagram = computed(() => resolveInstagramUrl(social.instagramHandle))
         <UButton
           v-if="github"
           color="neutral"
+          external
+          :aria-label="t('footer.external', { name: t('footer.github') })"
           :icon="'i-lucide-github'"
           :label="t('footer.github')"
           target="_blank"
@@ -47,8 +49,10 @@ const instagram = computed(() => resolveInstagramUrl(social.instagramHandle))
           v-if="linkedin"
           color="neutral"
           external
+          :aria-label="t('footer.external', { name: t('footer.linkedin') })"
           :icon="'i-lucide-linkedin'"
           :label="t('footer.linkedin')"
+          target="_blank"
           :to="linkedin"
           variant="ghost"
         />
@@ -62,8 +66,10 @@ const instagram = computed(() => resolveInstagramUrl(social.instagramHandle))
           v-if="instagram"
           color="neutral"
           external
+          :aria-label="t('footer.external', { name: t('footer.instagram') })"
           :icon="'i-lucide-instagram'"
           :label="t('footer.instagram')"
+          target="_blank"
           :to="instagram"
           variant="ghost"
         />

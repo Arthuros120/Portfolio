@@ -24,7 +24,7 @@ export function bindActiveSection() {
         return
       }
 
-      const header = document.querySelector('header')
+      const header = document.querySelector('.site-header')
       const line = window.scrollY + (header?.getBoundingClientRect().height ?? 0) + 24
       let current = 'top'
 

@@ -19,8 +19,10 @@ export default withNuxt(
       // Classes defined in app/assets/scss, loaded from nuxt.config.ts.
       'better-tailwindcss/no-unknown-classes': ['error', {
         ignore: [
-          '^site-(shell|main|menu-tools|footer)$',
+          '^site-(shell|main|menu-tools|footer|header|wordmark|nav)$',
           '^header-tools$',
+          '^menu-toggle$',
+          '^is-scrolled$',
           '^theme-toggle$',
           '^locale-switch$',
           '^footer-(links|tagline|copyright|slot)$',
