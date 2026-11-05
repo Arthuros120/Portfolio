@@ -1,0 +1,31 @@
+{
+  "brand": {
+    "name": "Arthur Hamelin"
+  },
+  "nav": {
+    "label": "Primary",
+    "home": "Home",
+    "projects": "Projects",
+    "about": "About",
+    "contact": "Contact"
+  },
+  "a11y": {
+    "skipToContent": "Skip to content"
+  },
+  "theme": {
+    "label": "Theme",
+    "light": "Light",
+    "dark": "Dark",
+    "system": "Auto"
+  },
+  "locale": {
+    "label": "Language",
+    "fr": "Français",
+    "en": "English"
+  },
+  "footer": {
+    "label": "Links",
+    "github": "GitHub",
+    "linkedin": "LinkedIn"
+  }
+}

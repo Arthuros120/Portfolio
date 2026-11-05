@@ -1,0 +1,70 @@
+.site-shell {
+  display: flex;
+  min-height: 100vh;
+  flex-direction: column;
+  background: var(--ui-bg);
+  color: var(--ui-text);
+}
+
+.site-main {
+  flex: 1;
+  width: min(100%, var(--ui-container));
+  margin-inline: auto;
+  padding: 1.5rem 1rem 3rem;
+}
+
+.page-title {
+  color: var(--ui-text-highlighted);
+  font-size: 1.875rem;
+  font-weight: 600;
+  line-height: 1.2;
+}
+
+.header-tools {
+  display: none;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.site-menu-tools {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.75rem;
+  margin-top: 1.5rem;
+}
+
+.theme-toggle,
+.locale-switch,
+.footer-links {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.25rem;
+}
+
+.site-footer {
+  display: flex;
+  width: 100%;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem 1.5rem;
+}
+
+@media (min-width: 64rem) {
+  .header-tools {
+    display: flex;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .site-shell *,
+  .site-shell *::before,
+  .site-shell *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    scroll-behavior: auto !important;
+    transition-duration: 0.01ms !important;
+  }
+}

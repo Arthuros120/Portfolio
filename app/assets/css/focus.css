@@ -1,0 +1,27 @@
+.skip-link {
+  position: absolute;
+  z-index: 60;
+  inset-inline-start: 0.75rem;
+  top: 0.75rem;
+  transform: translateY(-150%);
+  border-radius: 9999px;
+  background: var(--ui-primary);
+  color: var(--ui-text-inverted);
+  padding: 0.5rem 1rem;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.skip-link:focus {
+  transform: translateY(0);
+}
+
+.site-main:focus {
+  outline: 2px solid var(--ui-primary);
+  outline-offset: 2px;
+}
+
+:where(a, button, [role="radio"]):focus-visible {
+  outline: 2px solid var(--ui-primary);
+  outline-offset: 2px;
+}
