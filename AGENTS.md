@@ -23,7 +23,7 @@ Personal portfolio for Arthur Hamelin (full-stack developer, backend-focused). A
 2. Keep it as simple as possible. Prefer less code and fewer dependencies.
 3. Accessible (WCAG AA target) and responsive (mobile first): keyboard navigation, labels, aria states, visible focus, readable contrast.
 4. Buttons are pill-shaped (fully rounded). Theme: light / dark / auto, user-selectable and persisted.
-5. Styles live in separate CSS files, not in large inline style blocks.
+5. Styles live in separate SCSS files, not in large inline style blocks.
 6. Split code into several small files: one component per section, shared reusable components, content separated from components.
 7. When asked for code, write complete files (no partial snippets), ready to copy-paste.
 8. Code comments in English, JSDoc style. All user-facing text lives in YAML / locale files with the same keys in French and English.

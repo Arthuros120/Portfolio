@@ -1,3 +1,5 @@
+import scssTailwindEntry from './scss-tailwind-entry.mjs'
+
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
   modules: [
@@ -11,9 +13,10 @@ export default defineNuxtConfig({
   },
 
   css: [
-    '~/assets/css/main.css',
-    '~/assets/css/layout.css',
-    '~/assets/css/focus.css'
+    '~/assets/scss/main.scss',
+    '~/assets/scss/layout.scss',
+    '~/assets/scss/focus.scss',
+    '~/assets/scss/hero.scss'
   ],
 
   // Apply the saved or system theme before paint. An empty suffix matches Nuxt UI.
@@ -31,6 +34,10 @@ export default defineNuxtConfig({
   },
 
   compatibilityDate: '2026-06-30',
+
+  vite: {
+    plugins: [scssTailwindEntry()]
+  },
 
   eslint: {
     config: {

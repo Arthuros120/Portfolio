@@ -1,3 +1,3 @@
 <template>
-  <AppPageHeading message="nav.home" />
+  <HomeHero />
 </template>

@@ -27,5 +27,14 @@
     "label": "Links",
     "github": "GitHub",
     "linkedin": "LinkedIn"
+  },
+  "hero": {
+    "role": "Full-stack developer",
+    "intro": "[PLACEHOLDER] A short presentation for recruiters and freelance clients will go here. Arthur will replace this paragraph.",
+    "viewProjects": "View projects",
+    "contact": "Contact me",
+    "contactUnavailable": "[TO PROVIDE] Public email address",
+    "mailSubject": "Portfolio — contact",
+    "mailBody": "Hello Arthur,\n\n"
   }
 }
