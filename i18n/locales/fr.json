@@ -68,19 +68,15 @@
   },
   "projects": {
     "flag": "[PLACEHOLDER — layout fixture]",
-    "linkPending": "[TO PROVIDE]",
-    "view": "Voir le projet"
+    "view": "Voir le projet",
+    "open": "Ouvrir le projet",
+    "mediaEmpty": "[TO PROVIDE]",
+    "missing": "Ce projet n'est pas disponible.",
+    "imageMissing": "Cette image n'est pas disponible.",
+    "visuals": "Visuels"
   },
   "modal": {
-    "close": "Fermer",
-    "placeholderFlag": "[PLACEHOLDER]",
-    "placeholderOpen": "[PLACEHOLDER] Ouvrir la modale",
-    "placeholderTitle": "[PLACEHOLDER] Aperçu de modale",
-    "placeholderBody": "[PLACEHOLDER] Cette fenêtre ne sert qu'à prouver les liens partageables. Ce n'est pas un projet.",
-    "placeholderId": "Identifiant : {id}",
-    "placeholderImageOpen": "[PLACEHOLDER] Ouvrir la couche image",
-    "placeholderImageTitle": "[PLACEHOLDER] Couche image",
-    "placeholderImageBody": "[PLACEHOLDER] Cette seconde couche prouve que Retour ferme la fenêtre du dessus."
+    "close": "Fermer"
   },
   "availability": {
     "open": "Ouvert à l'intérim, au freelance, au CDD et au CDI.",

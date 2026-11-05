@@ -1,4 +1,5 @@
 # Restricted public project. No screenshots, no internal figures.
+# A new project is another entry plus files in public/media/projects/.
 lead:
   fr: "[PLACEHOLDER] Projets."
   en: "[PLACEHOLDER] Projects."
@@ -18,4 +19,10 @@ items:
       en: "[PLACEHOLDER] Project-management work."
     stack: []
     link: "[TO PROVIDE]"
-    images: []
+    images:
+      - id: monorga-logo
+        src: "[TO PROVIDE]"
+        span: wide
+        alt:
+          fr: "[TO PROVIDE] Logo"
+          en: "[TO PROVIDE] Logo"

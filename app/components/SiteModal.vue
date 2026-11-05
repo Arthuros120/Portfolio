@@ -9,10 +9,15 @@ const props = defineProps<{
   layer: ModalQueryKey
   title: string
   description?: string
+  /**
+   * Fill the viewport. The image layer uses this for the lightbox.
+   */
+  fullscreen?: boolean
 }>()
 
 const { t } = useI18n()
 const { isOpen, id, close } = useModalLayer(props.layer)
+const { stack } = useModalStack()
 
 const sheetQuery = '(max-width: 47.99rem)'
 const reducedQuery = '(prefers-reduced-motion: reduce)'
@@ -44,13 +49,16 @@ onMounted(() => {
 })
 
 const dialogId = computed(() => `site-modal-${props.layer}`)
+const fillScreen = computed(() => props.fullscreen === true || isSheet.value)
+const isTop = computed(() => stack.value[stack.value.length - 1]?.key === props.layer)
 
 const ui = computed(() => ({
   overlay: `site-modal-overlay site-modal-layer-${props.layer}`,
   content: [
     'site-modal-panel',
     `site-modal-layer-${props.layer}`,
-    isSheet.value ? 'site-modal-sheet' : ''
+    fillScreen.value ? 'site-modal-sheet' : '',
+    props.fullscreen ? 'site-modal-lightbox' : ''
   ].filter(Boolean).join(' '),
   body: 'site-modal-body'
 }))
@@ -69,30 +77,70 @@ function labelDialog(node?: EventTarget | null) {
   panel.tabIndex = -1
 }
 
+function onAfterEnter() {
+  labelDialog()
+  revealTop()
+}
+
 function onOpenAutoFocus(event: Event) {
   event.preventDefault()
   labelDialog(event.target)
-  if (event.target instanceof HTMLElement) {
-    event.target.focus()
+  revealTop()
+
+  if (!isTop.value || !(event.target instanceof HTMLElement)) {
+    return
   }
+
+  event.target.focus()
 }
 
 const dialogContent = computed(() => ({
   onOpenAutoFocus
 }))
 
-watch(isOpen, (open) => {
+/**
+ * Two dialogs that open together can each mark the other `aria-hidden`.
+ * The top layer must stay available to assistive technology.
+ */
+function revealTop() {
+  if (!import.meta.client || !isOpen.value || !isTop.value) {
+    return
+  }
+
+  const panel = document.getElementById(dialogId.value)
+
+  panel?.removeAttribute('aria-hidden')
+}
+
+watch([isOpen, isTop], ([open]) => {
   if (!open || !import.meta.client) {
     return
   }
 
-  nextTick(() => labelDialog())
-})
+  nextTick(() => {
+    labelDialog()
+    revealTop()
+    requestAnimationFrame(revealTop)
+    window.setTimeout(revealTop, 0)
+  })
+}, { immediate: true })
 
+/**
+ * Ignore a close that belongs to a dialog underneath the top layer.
+ * Escape and the backdrop then leave the upper dialog in place.
+ */
 function onUpdateOpen(next: boolean) {
-  if (!next && isOpen.value) {
-    close()
+  if (next || !isOpen.value) {
+    return
   }
+
+  const top = stack.value[stack.value.length - 1]
+
+  if (top && top.key !== props.layer) {
+    return
+  }
+
+  close()
 }
 
 function onAfterLeave() {
@@ -121,12 +169,13 @@ function onAfterLeave() {
   <UModal
     :content="dialogContent"
     :description="description"
-    :fullscreen="isSheet"
+    :dismissible="isTop"
+    :fullscreen="fillScreen"
     :open="isOpen"
     :title="title"
     :transition="!reducedMotion"
     :ui="ui"
-    @after:enter="labelDialog"
+    @after:enter="onAfterEnter"
     @after:leave="onAfterLeave"
     @update:open="onUpdateOpen"
   >

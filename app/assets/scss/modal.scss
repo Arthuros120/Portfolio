@@ -17,6 +17,17 @@
   background-color: color-mix(in oklch, black 46%, transparent);
 }
 
+.site-modal-panel.site-modal-layer-project:not(.site-modal-sheet) {
+  width: min(52rem, calc(100vw - 2rem));
+  max-width: 52rem;
+}
+
+.site-modal-panel.site-modal-lightbox [data-slot="body"] {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
 .site-modal-panel {
   border: 1px solid color-mix(in oklch, var(--ui-border) 70%, transparent);
   background-color: color-mix(in oklch, var(--ui-bg) 86%, transparent);
@@ -100,24 +111,4 @@ html.has-site-modal,
 html.has-site-modal body {
   overflow: hidden;
   overscroll-behavior: none;
-}
-
-.modal-placeholder {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  gap: 0.75rem 1rem;
-  margin-top: 1.25rem;
-}
-
-.modal-placeholder-flag,
-.modal-placeholder-id {
-  margin: 0;
-  color: var(--ui-text);
-  font-family: var(--font-mono);
-  font-size: 0.8125rem;
-}
-
-.modal-placeholder-id {
-  margin-bottom: 1rem;
 }
