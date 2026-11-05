@@ -25,14 +25,12 @@
 }
 
 .project-grid,
-.skill-grid,
 .about-grid {
   display: grid;
   gap: 0.9rem;
 }
 
-.project-grid,
-.skill-grid {
+.project-grid {
   @media (min-width: 48rem) {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
@@ -50,7 +48,6 @@
 }
 
 .project-title,
-.skill-title,
 .about-title,
 .career-title {
   margin: 0 0 0.45rem;
@@ -67,8 +64,7 @@
   line-height: 1.5;
 }
 
-.project-stack,
-.skill-list {
+.project-stack {
   display: flex;
   flex-wrap: wrap;
   gap: 0.35rem;
@@ -86,7 +82,6 @@
   font-size: 0.8125rem;
 }
 
-.skill-group,
 .about-card {
   height: 100%;
 }

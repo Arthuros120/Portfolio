@@ -58,15 +58,22 @@ export type ExperienceFile = {
   steps: ExperienceStep[]
 }
 
-export type SkillGroup = {
+/** Category ids. Visible names live in the locale files, not in YAML. */
+export const skillCategories = ['languages', 'frameworks', 'data'] as const
+
+export type SkillCategory = typeof skillCategories[number]
+
+export type Skill = {
   id: string
-  title: Localized
-  items: string[]
+  category: SkillCategory
+  label: string
+  icon: string
+  blurb: Localized
 }
 
 export type SkillFile = {
   lead: Localized
-  groups: SkillGroup[]
+  items: Skill[]
 }
 
 export type Interest = {

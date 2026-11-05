@@ -66,6 +66,13 @@
     "aboutKicker": "à propos",
     "contactKicker": "contact"
   },
+  "skills": {
+    "categories": {
+      "languages": "Langages",
+      "frameworks": "Frameworks et stack",
+      "data": "Données"
+    }
+  },
   "projects": {
     "flag": "[PLACEHOLDER — layout fixture]",
     "view": "Voir le projet",
