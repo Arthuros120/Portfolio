@@ -37,16 +37,16 @@
     "external": "{name} (new tab)"
   },
   "hero": {
-    "place": "[TO PROVIDE]",
     "role": "Full-stack developer",
     "intro": "[PLACEHOLDER] A short presentation for recruiters and freelance clients will go here. Arthur will replace this paragraph.",
     "viewProjects": "View my projects",
     "contact": "Contact me",
+    "contactMissing": "Contact me. Public email address missing.",
     "contactUnavailable": "[TO PROVIDE] Public email address",
     "mailSubject": "Portfolio — contact",
     "mailBody": "Hello Arthur,\n\n",
     "codeFile": "profile.ts",
-    "code": "// [PLACEHOLDER]\nconst profile = {'{'}\n  name: \"Arthur Hamelin\",\n  role: \"Full-stack developer\"\n{'}'}"
+    "codeComment": "// [PLACEHOLDER]"
   },
   "sections": {
     "projectsKicker": "projects",

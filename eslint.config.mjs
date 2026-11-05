@@ -35,7 +35,6 @@ export default withNuxt(
           '^skill(?:-.+)?$',
           '^about(?:-.+)?$',
           '^contact(?:-.+)?$',
-          '^compass(?:-.+)?$',
           '^code-card(?:-.+)?$',
           '^reveal-armed$',
           '^is-visible$',
