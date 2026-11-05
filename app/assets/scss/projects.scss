@@ -1,0 +1,206 @@
+// Project cards, bento, and lightbox. No glow.
+
+.project-card {
+  position: relative;
+  height: 100%;
+
+  [data-slot="body"] {
+    display: flex;
+    height: 100%;
+    flex-direction: column;
+    padding: 0;
+  }
+
+  &:hover .project-open-label,
+  &:focus-within .project-open-label {
+    text-decoration: underline;
+    text-underline-offset: 0.18em;
+  }
+
+  &:focus-within {
+    outline: 2px solid var(--ui-primary);
+    outline-offset: 2px;
+  }
+}
+
+.project-thumb {
+  padding: 0.85rem 0.85rem 0;
+}
+
+.project-thumb .project-media {
+  aspect-ratio: 16 / 10;
+  min-height: 0;
+}
+
+.project-card-copy {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 0.9rem 1rem 1rem;
+}
+
+.project-card-open {
+  display: inline-flex;
+  align-items: center;
+  min-height: 2.75rem;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: inherit;
+  font: inherit;
+  text-align: start;
+  cursor: pointer;
+
+  &::after {
+    content: "";
+    position: absolute;
+    z-index: 1;
+    inset: 0;
+  }
+
+  &:focus-visible {
+    outline: none;
+  }
+}
+
+.project-open-label {
+  margin: auto 0 0;
+  color: var(--ui-primary);
+  font-size: 0.875rem;
+  font-weight: 600;
+}
+
+.project-media {
+  display: flex;
+  width: 100%;
+  min-height: 8.5rem;
+  overflow: hidden;
+  border-radius: 0.75rem;
+  background: color-mix(in oklch, var(--ui-bg-elevated) 72%, transparent);
+}
+
+.project-media-image {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.project-media.project-fit-contain {
+  align-items: center;
+  justify-content: center;
+
+  .project-media-image {
+    width: auto;
+    max-width: 100%;
+    height: auto;
+    max-height: 100%;
+    object-fit: contain;
+  }
+}
+
+.project-media-empty {
+  display: flex;
+  flex: 1;
+  align-items: center;
+  justify-content: center;
+  padding: 0.75rem;
+  border: 1px dashed color-mix(in oklch, var(--ui-border) 85%, transparent);
+  border-radius: inherit;
+  color: var(--ui-text);
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  line-height: 1.4;
+  text-align: center;
+}
+
+.project-bento {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 0.75rem;
+  margin: 1rem 0 0;
+  padding: 0;
+  list-style: none;
+
+  @media (min-width: 40rem) {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    grid-auto-flow: dense;
+    grid-auto-rows: 9rem;
+  }
+}
+
+.project-bento-item.project-span-wide {
+  @media (min-width: 40rem) {
+    grid-column: span 2;
+  }
+}
+
+.project-bento-item.project-span-tall {
+  @media (min-width: 40rem) {
+    grid-row: span 2;
+  }
+}
+
+.project-bento-button {
+  display: flex;
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  border-radius: 0.75rem;
+  background: transparent;
+  color: inherit;
+  font: inherit;
+  cursor: pointer;
+}
+
+.project-bento-button .project-media {
+  flex: 1;
+  height: 100%;
+}
+
+.project-detail .project-link {
+  margin-bottom: 0.25rem;
+}
+
+.project-lightbox {
+  display: flex;
+  width: 100%;
+  min-height: min(70dvh, 40rem);
+  align-items: center;
+  justify-content: center;
+}
+
+.project-lightbox .project-media {
+  width: min(100%, 64rem);
+  min-height: min(70dvh, 40rem);
+}
+
+.project-lightbox .project-media.project-fit-contain .project-media-image {
+  max-height: min(70dvh, 40rem);
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .project-bento-button.project-zoomable .project-media-image {
+    transition: transform 180ms ease;
+  }
+
+  .project-bento-button.project-zoomable:hover .project-media-image,
+  .project-bento-button.project-zoomable:focus-visible .project-media-image {
+    transform: scale(1.04);
+  }
+}
+
+@media (forced-colors: active) {
+  .project-media-empty {
+    border: 1px solid CanvasText;
+  }
+
+  .project-card:focus-within,
+  .project-bento-button:focus-visible {
+    outline: 2px solid Highlight;
+  }
+}

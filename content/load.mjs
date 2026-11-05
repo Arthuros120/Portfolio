@@ -1,10 +1,11 @@
-import { readFileSync } from 'node:fs'
+import { existsSync, readFileSync } from 'node:fs'
 import { dirname, join } from 'node:path'
 import { fileURLToPath } from 'node:url'
 import { parse } from 'yaml'
 
 const root = join(dirname(fileURLToPath(import.meta.url)))
 const localeRoot = join(root, '../i18n/locales')
+const publicRoot = join(root, '../public')
 
 const requiredSkills = [
   'TypeScript',
@@ -40,7 +41,13 @@ const contentFiles = [
 
 const fixtureMarker = '[PLACEHOLDER — layout fixture]'
 const placeholderPattern = /^\s*\[(?:TO PROVIDE|PLACEHOLDER)\b/
-const internalFigurePattern = /40[\s,.]?000|screenshot|\.(?:png|jpe?g|webp|gif)\b/i
+const internalFigurePattern = /40[\s,.]?000|\bscreenshots?\b/i
+const mediaFilePattern = /\.(?:png|jpe?g|webp|gif|avif|svg)\b/i
+const projectImageSrcPath = /(?:^|\.)images\.\d+\.src$/
+const projectAssetPattern = /^\/media\/projects\/[a-z0-9]+(?:-[a-z0-9]+)*\/[a-z0-9]+(?:-[a-z0-9]+)*\.(?:svg|png|jpe?g|webp|avif)$/
+const rasterAssetPattern = /\.(?:png|jpe?g|webp|gif|avif)$/i
+const modalIdPattern = /^[A-Za-z0-9][A-Za-z0-9_-]{0,80}$/
+const projectImageSpans = ['regular', 'wide', 'tall']
 
 /**
  * Read the portfolio YAML and refuse anything that does not match the schema.
@@ -209,6 +216,21 @@ function localized(value, path) {
 }
 
 /**
+ * True for the known internal headcount, the word screenshot, or a media
+ * filename outside a project image `src` (those paths are checked on their own).
+ *
+ * @param {string} value
+ * @param {string} path
+ */
+function hasInternalMaterial(value, path) {
+  if (internalFigurePattern.test(value)) {
+    return true
+  }
+
+  return mediaFilePattern.test(value) && !projectImageSrcPath.test(path)
+}
+
+/**
  * Reject screenshots and the known internal headcount.
  * The public names MonOrga and Enedis are allowed.
  *
@@ -216,7 +238,7 @@ function localized(value, path) {
  * @param {string} path
  */
 function assertNoInternalMaterial(value, path) {
-  if (typeof value === 'string' && internalFigurePattern.test(value)) {
+  if (typeof value === 'string' && hasInternalMaterial(value, path)) {
     fail(`${path} contains internal figures or screenshot material`)
   }
 
@@ -560,6 +582,7 @@ function assertProjects(projects) {
   }
 
   const ids = new Set()
+  const imageIds = new Set()
 
   projects.items.forEach((item, index) => {
     const path = `projects.items.${index}`
@@ -626,13 +649,7 @@ function assertProjects(projects) {
       assertSlotOrHttps(item.link, `${path}.link`)
     }
 
-    if (!Array.isArray(item.images)) {
-      fail(`${path}.images must be a list`)
-    }
-
-    if (item.images.length > 0) {
-      fail(`${path}.images must stay empty until public assets are provided`)
-    }
+    assertProjectImages(item, path, imageIds)
 
     if (item.placeholder === true) {
       assertLayoutFixture(title, summary, description, path)
@@ -645,6 +662,93 @@ function assertProjects(projects) {
 
   if (!ids.has('monorga')) {
     fail('projects.items must include monorga')
+  }
+}
+
+/**
+ * Public visuals. An empty list is valid. A restricted project may only
+ * carry a placeholder or a public SVG, never a raster screenshot.
+ *
+ * @param {Record<string, unknown>} item
+ * @param {string} path
+ * @param {Set<string>} imageIds
+ */
+function assertProjectImages(item, path, imageIds) {
+  if (!Array.isArray(item.images)) {
+    fail(`${path}.images must be a list`)
+  }
+
+  item.images.forEach((image, index) => {
+    const imagePath = `${path}.images.${index}`
+
+    if (!isRecord(image)) {
+      fail(`${imagePath} must be an object`)
+    }
+
+    exactKeys(image, ['id', 'src', 'span', 'alt'], imagePath)
+    nonEmptyString(image.id, `${imagePath}.id`)
+
+    if (typeof image.id !== 'string' || !modalIdPattern.test(image.id)) {
+      fail(`${imagePath}.id must be a modal id`)
+    }
+
+    if (imageIds.has(image.id)) {
+      fail(`${imagePath}.id is duplicated`)
+    }
+
+    imageIds.add(image.id)
+
+    if (typeof image.span !== 'string' || !projectImageSpans.includes(image.span)) {
+      fail(`${imagePath}.span must be regular, wide, or tall`)
+    }
+
+    const alt = localized(image.alt, `${imagePath}.alt`)
+    assertImageSrc(image.src, item.restricted === true, imagePath)
+
+    if (item.placeholder === true) {
+      if (!alt.fr.includes(fixtureMarker) || !alt.en.includes(fixtureMarker)) {
+        fail(`${imagePath}.alt must include ${fixtureMarker} in fr and en`)
+      }
+    }
+
+    if (item.restricted === true) {
+      assertRestrictedCopy(alt.fr, `${imagePath}.alt.fr`)
+      assertRestrictedCopy(alt.en, `${imagePath}.alt.en`)
+    }
+  })
+}
+
+/**
+ * @param {unknown} src
+ * @param {boolean} restricted
+ * @param {string} path
+ */
+function assertImageSrc(src, restricted, path) {
+  const srcPath = `${path}.src`
+  nonEmptyString(src, srcPath)
+
+  if (typeof src !== 'string' || isPlaceholder(src)) {
+    return
+  }
+
+  if (!projectAssetPattern.test(src)) {
+    fail(`${srcPath} must be a public /media/projects path or a [TO PROVIDE] slot`)
+  }
+
+  if (restricted && rasterAssetPattern.test(src)) {
+    fail(`${srcPath} cannot be a raster image on a restricted project`)
+  }
+
+  const relative = src.replace(/^\//, '')
+  const file = join(publicRoot, relative)
+  const rootWithSep = publicRoot.endsWith('/') ? publicRoot : `${publicRoot}/`
+
+  if (!file.startsWith(rootWithSep)) {
+    fail(`${srcPath} must stay inside public assets`)
+  }
+
+  if (!existsSync(file)) {
+    fail(`${srcPath} file is missing`)
   }
 }
 

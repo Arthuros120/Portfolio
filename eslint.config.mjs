@@ -39,7 +39,6 @@ export default withNuxt(
           '^reveal-armed$',
           '^is-visible$',
           '^site-modal(?:-.+)?$',
-          '^modal-placeholder(?:-.+)?$',
           '^has-site-modal$'
         ]
       }]

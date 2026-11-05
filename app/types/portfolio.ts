@@ -7,6 +7,20 @@ export type Localized = {
   en: string
 }
 
+/** Bento cell size. `regular` is one cell, `wide` spans columns, `tall` spans rows. */
+export type ProjectImageSpan = 'regular' | 'wide' | 'tall'
+
+/**
+ * One public visual.
+ * `src` is a `[TO PROVIDE]` slot or a file under `public/media/projects/`.
+ */
+export type ProjectImage = {
+  id: string
+  src: string
+  span: ProjectImageSpan
+  alt: Localized
+}
+
 export type Project = {
   id: string
   restricted: boolean
@@ -17,7 +31,7 @@ export type Project = {
   description: Localized
   stack: string[]
   link: string | null
-  images: string[]
+  images: ProjectImage[]
 }
 
 export type ProjectFile = {
