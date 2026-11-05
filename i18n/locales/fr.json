@@ -48,6 +48,17 @@
     "codeFile": "profile.ts",
     "codeComment": "// [PLACEHOLDER]"
   },
+  "career": {
+    "timeline": "Étapes du parcours",
+    "previous": "Étape précédente",
+    "next": "Étape suivante",
+    "sendWave": "Envoyer une vague",
+    "water": "Envoyer une vague et avancer d'une étape",
+    "step": "{title}, {organization}, {period}",
+    "read": "Lire le détail",
+    "active": "Étape sélectionnée",
+    "missing": "Cette étape n'est pas disponible."
+  },
   "sections": {
     "projectsKicker": "projets",
     "careerKicker": "parcours",

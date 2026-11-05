@@ -1,0 +1,306 @@
+// Path timeline. The water is calm unless one wave is playing.
+// Sails never animate. Wind is three dots, and only when motion is allowed.
+
+.career-controls {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin: 0 0 1rem;
+
+  button {
+    min-height: 2.75rem;
+  }
+
+  button:disabled {
+    opacity: 0.45;
+  }
+}
+
+.career-sea {
+  max-width: 100%;
+  margin: 0 0 1rem;
+  overflow-x: auto;
+  overscroll-behavior-x: contain;
+}
+
+.career-track {
+  position: relative;
+  min-width: max(100%, calc(var(--career-count, 1) * 11.5rem));
+  padding-top: 4.75rem;
+}
+
+.career-wind {
+  position: absolute;
+  z-index: 2;
+  top: 0.35rem;
+  right: 0;
+  left: 0;
+  height: 2.4rem;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.career-wind-dot {
+  position: absolute;
+  width: 0.28rem;
+  height: 0.28rem;
+  border-radius: 9999px;
+  background: color-mix(in oklch, var(--ui-primary) 50%, var(--ui-text));
+  opacity: 0.4;
+  animation: career-drift 16s linear infinite;
+}
+
+.career-wind-dot:nth-child(1) {
+  top: 0.35rem;
+}
+
+.career-wind-dot:nth-child(2) {
+  top: 1.05rem;
+  animation-duration: 13s;
+  animation-delay: -5s;
+}
+
+.career-wind-dot:nth-child(3) {
+  top: 1.7rem;
+  animation-duration: 18s;
+  animation-delay: -11s;
+}
+
+.career-water {
+  position: relative;
+  display: block;
+  width: 100%;
+  height: 3.15rem;
+  padding: 0;
+  border: 1px solid color-mix(in oklch, var(--ui-primary) 38%, var(--ui-border));
+  border-radius: 9999px;
+  appearance: none;
+  background:
+    linear-gradient(
+      180deg,
+      color-mix(in oklch, var(--ui-primary) 16%, var(--ui-bg)) 0%,
+      color-mix(in oklch, var(--ui-primary) 46%, var(--ui-bg)) 100%
+    );
+  color: inherit;
+  cursor: pointer;
+
+  &:disabled {
+    opacity: 1;
+    cursor: default;
+  }
+}
+
+.career-water::after {
+  content: "";
+  position: absolute;
+  top: 46%;
+  right: 8%;
+  left: 8%;
+  height: 1px;
+  background: color-mix(in oklch, var(--ui-bg) 40%, white);
+  opacity: 0.75;
+  pointer-events: none;
+}
+
+.career-wave {
+  position: absolute;
+  z-index: 1;
+  right: 0.6rem;
+  bottom: 0.45rem;
+  left: 0.6rem;
+  width: auto;
+  height: 1.35rem;
+  color: color-mix(in oklch, var(--ui-primary) 72%, var(--ui-bg));
+  pointer-events: none;
+  animation: career-wave 900ms ease-out 1 forwards;
+}
+
+.career-boat {
+  position: absolute;
+  z-index: 3;
+  top: 1.05rem;
+  left: var(--career-x, 50%);
+  width: 7.4rem;
+  color: var(--ui-text-highlighted);
+  pointer-events: none;
+  transform: translateX(-50%);
+  transition: left 900ms cubic-bezier(0.22, 0.7, 0.2, 1);
+}
+
+.career-boat-shape {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.career-boat-sail {
+  animation: none;
+  transform: none;
+}
+
+.career-boat.career-bobbing {
+  animation: career-bob 900ms ease-in-out 1;
+}
+
+.career-steps {
+  display: flex;
+  align-items: flex-start;
+  margin-top: -0.45rem;
+}
+
+.career-step {
+  display: flex;
+  flex: 1 0 10.5rem;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.2rem;
+  min-height: 2.75rem;
+  padding: 0.35rem 0.5rem 0.15rem;
+  border: 0;
+  background: transparent;
+  color: inherit;
+  font: inherit;
+  text-align: center;
+  cursor: pointer;
+}
+
+.career-step-mark {
+  width: 0.6rem;
+  height: 0.6rem;
+  margin-bottom: 0.2rem;
+  border-radius: 9999px;
+  background: color-mix(in oklch, var(--ui-primary) 55%, var(--ui-border));
+}
+
+.career-step-title {
+  color: var(--ui-text-highlighted);
+  font-size: 0.95rem;
+  font-weight: 600;
+  line-height: 1.3;
+  text-wrap: balance;
+}
+
+.career-step-org,
+.career-step-period {
+  color: var(--ui-text);
+  font-family: var(--font-mono);
+  font-size: 0.8125rem;
+  line-height: 1.35;
+  overflow-wrap: anywhere;
+}
+
+.career-step.career-current .career-step-mark {
+  width: 0.8rem;
+  height: 0.8rem;
+  background: var(--ui-primary);
+}
+
+.career-step.career-quiet .career-step-title {
+  color: var(--ui-text);
+  font-size: 0.875rem;
+  font-weight: 500;
+}
+
+.career-step.career-quiet .career-step-mark {
+  background: var(--ui-border);
+}
+
+.career-summary {
+  max-width: 40rem;
+}
+
+.career-summary-text {
+  display: -webkit-box;
+  overflow: hidden;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3;
+  line-clamp: 3;
+}
+
+.career-live {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.career-modal .career-detail {
+  margin-bottom: 0;
+}
+
+@keyframes career-drift {
+  from {
+    left: -4%;
+  }
+
+  to {
+    left: 104%;
+  }
+}
+
+@keyframes career-wave {
+  0% {
+    opacity: 0;
+    transform: translateY(5px) scaleY(0.55);
+  }
+
+  28% {
+    opacity: 0.95;
+    transform: translateY(0) scaleY(1);
+  }
+
+  100% {
+    opacity: 0;
+    transform: translateY(3px) scaleY(0.3);
+  }
+}
+
+@keyframes career-bob {
+  0% {
+    transform: translateX(-50%) translateY(0) rotate(0deg);
+  }
+
+  30% {
+    transform: translateX(-50%) translateY(3px) rotate(-2deg);
+  }
+
+  62% {
+    transform: translateX(-50%) translateY(-2px) rotate(1.4deg);
+  }
+
+  100% {
+    transform: translateX(-50%) translateY(0) rotate(0deg);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .career-wind,
+  .career-wave {
+    display: none;
+  }
+
+  .career-wind-dot,
+  .career-boat,
+  .career-boat-sail {
+    animation: none;
+    transition: none;
+  }
+}
+
+@media (forced-colors: active) {
+  .career-water {
+    border: 1px solid CanvasText;
+    background: Canvas;
+  }
+
+  .career-boat,
+  .career-step-mark {
+    color: CanvasText;
+    background: CanvasText;
+  }
+}

@@ -9,6 +9,10 @@
   z-index: 90;
 }
 
+.site-modal-layer-step {
+  z-index: 100;
+}
+
 .site-modal-overlay {
   background-color: color-mix(in oklch, black 46%, transparent);
 }
