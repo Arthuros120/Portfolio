@@ -1,12 +1,25 @@
 <script setup lang="ts">
 /**
- * Opening screen: name, role, placeholder introduction, actions, compass and code card.
+ * Opening screen: name, role, placeholder introduction, availability and a code card.
+ * The wave is decorative only. It does not move when reduced motion is requested.
  */
-const { t } = useI18n()
+const { locale, t } = useI18n()
 const localePath = useLocalePath()
 const { mailto } = useContactMail()
+const { availability } = usePortfolioContent()
 
 const projectsHref = computed(() => `${localePath('/')}#projects`)
+const now = ref(Date.now())
+const contractDate = computed(() => formatContractDate(availability.untilDate, locale.value))
+const days = computed(() => daysUntilAvailable(availability.untilDate, availability.timeZone, now.value))
+
+const availabilityStatus = computed(() => {
+  if (days.value <= 0) {
+    return t('availability.availableNow')
+  }
+
+  return t('availability.until', { date: contractDate.value })
+})
 </script>
 
 <template>
@@ -16,9 +29,6 @@ const projectsHref = computed(() => `${localePath('/')}#projects`)
     aria-labelledby="hero-title"
   >
     <div class="hero-copy">
-      <p class="hero-place">
-        {{ t('hero.place') }}
-      </p>
       <h1
         id="hero-title"
         class="hero-name"
@@ -34,6 +44,10 @@ const projectsHref = computed(() => `${localePath('/')}#projects`)
       />
       <p class="hero-intro">
         {{ t('hero.intro') }}
+      </p>
+      <p class="hero-availability">
+        <span class="hero-availability-line">{{ availabilityStatus }}</span>
+        <span class="hero-availability-line">{{ t('availability.open') }}</span>
       </p>
       <div class="hero-actions">
         <UButton
@@ -52,7 +66,6 @@ const projectsHref = computed(() => `${localePath('/')}#projects`)
       </p>
     </div>
     <div class="hero-aside">
-      <HeroCompass />
       <HeroCodeCard />
     </div>
     <div

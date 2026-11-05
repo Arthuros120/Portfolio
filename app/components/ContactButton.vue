@@ -1,6 +1,7 @@
 <script setup lang="ts">
 /**
- * Contact control. Stays disabled until content holds a real public email.
+ * Contact control. Stays visible and disabled until content holds a real public email.
+ * The accessible name then says the address is missing.
  */
 defineProps<{
   describedBy?: string
@@ -21,9 +22,11 @@ const { mailto } = useContactMail()
   <UButton
     v-else
     :aria-describedby="describedBy"
+    :aria-label="t('hero.contactMissing')"
     color="neutral"
     disabled
     :label="t('hero.contact')"
+    type="button"
     variant="outline"
   />
 </template>
