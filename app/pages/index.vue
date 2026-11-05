@@ -19,5 +19,6 @@ bindActiveSection()
     <HomeSkills />
     <HomeAbout />
     <HomeContact />
+    <HomeLinkedIn />
   </div>
 </template>

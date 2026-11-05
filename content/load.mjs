@@ -19,6 +19,11 @@ const skillCatalog = [
 
 const experienceTags = ['education', 'professional', 'retail', 'restaurant']
 
+/** Keep in sync with contractTypes in app/types/portfolio.ts. */
+const contractTypes = ['interim', 'freelance', 'cdd', 'cdi']
+
+const githubUrl = 'https://github.com/Arthuros120'
+
 /** Fixed order. The DJ entry is the only one with professional fields. */
 const interestCatalog = [
   { id: 'sailing', icon: 'i-lucide-sailboat' },
@@ -92,6 +97,8 @@ function assertLocaleFiles() {
   const fr = readJson('fr.json')
   const en = readJson('en.json')
   assertSameKeys(fr, en, 'locales')
+  assertAvailabilityMessages(fr, 'fr.json')
+  assertAvailabilityMessages(en, 'en.json')
 }
 
 /**
@@ -395,16 +402,37 @@ function assertSocial(social) {
     'linkedinPosts'
   ], 'social')
 
-  assertSlotOrHttps(social.githubUrl, 'social.githubUrl')
+  if (social.githubUrl !== githubUrl) {
+    fail(`social.githubUrl must be ${githubUrl}`)
+  }
+
   assertSlotOrHttps(social.linkedinUrl, 'social.linkedinUrl')
   assertHandle(social.instagramHandle, 'social.instagramHandle')
 
-  if (!Array.isArray(social.linkedinPosts) || social.linkedinPosts.length === 0) {
-    fail('social.linkedinPosts must list at least one URL or [TO PROVIDE] slot')
+  if (!Array.isArray(social.linkedinPosts)) {
+    fail('social.linkedinPosts must be a list')
   }
 
+  const urls = new Set()
+
   social.linkedinPosts.forEach((post, index) => {
-    assertSlotOrHttps(post, `social.linkedinPosts.${index}`)
+    const path = `social.linkedinPosts.${index}`
+
+    if (!isRecord(post)) {
+      fail(`${path} must be an object with url and title`)
+    }
+
+    exactKeys(post, ['url', 'title'], path)
+    assertSlotOrHttps(post.url, `${path}.url`)
+    localized(post.title, `${path}.title`)
+
+    if (typeof post.url === 'string' && urls.has(post.url)) {
+      fail(`${path}.url is duplicated`)
+    }
+
+    if (typeof post.url === 'string') {
+      urls.add(post.url)
+    }
   })
 }
 
@@ -416,9 +444,43 @@ function assertAvailability(availability) {
     fail('availability must be an object')
   }
 
-  exactKeys(availability, ['untilDate', 'timeZone'], 'availability')
+  exactKeys(availability, ['untilDate', 'timeZone', 'openTo'], 'availability')
   assertDate(availability.untilDate, 'availability.untilDate')
   assertTimeZone(availability.timeZone, 'availability.timeZone')
+
+  if (!Array.isArray(availability.openTo) || availability.openTo.join('|') !== contractTypes.join('|')) {
+    fail(`availability.openTo must be ${contractTypes.join(', ')}`)
+  }
+}
+
+/**
+ * Contract labels are chosen by id, so a missing locale key must fail the build.
+ *
+ * @param {unknown} messages
+ * @param {string} name
+ */
+function assertAvailabilityMessages(messages, name) {
+  if (!isRecord(messages) || !isRecord(messages.availability)) {
+    fail(`${name} availability copy must be an object`)
+  }
+
+  const availability = messages.availability
+
+  if (typeof availability.open !== 'string' || !availability.open.includes('{list}')) {
+    fail(`${name} availability.open must include {list}`)
+  }
+
+  if (!isRecord(availability.contracts)) {
+    fail(`${name} availability.contracts must be an object`)
+  }
+
+  for (const id of contractTypes) {
+    const label = availability.contracts[id]
+
+    if (typeof label !== 'string' || label.trim() === '') {
+      fail(`${name} availability.contracts.${id} must be a non-empty string`)
+    }
+  }
 }
 
 /**

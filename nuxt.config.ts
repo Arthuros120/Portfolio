@@ -21,6 +21,7 @@ export default defineNuxtConfig({
     '~/assets/scss/focus.scss',
     '~/assets/scss/hero.scss',
     '~/assets/scss/sections.scss',
+    '~/assets/scss/contact.scss',
     '~/assets/scss/skills.scss',
     '~/assets/scss/about.scss',
     '~/assets/scss/projects.scss',

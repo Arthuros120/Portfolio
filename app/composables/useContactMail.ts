@@ -1,4 +1,4 @@
-import { resolvePublicEmail } from '~/utils/public-links'
+import { buildMailto, resolvePublicEmail } from '~/utils/public-links'
 
 /**
  * Mailto target for the contact actions.
@@ -15,10 +15,7 @@ export function useContactMail() {
       return null
     }
 
-    const subject = encodeURIComponent(t('hero.mailSubject'))
-    const body = encodeURIComponent(t('hero.mailBody'))
-
-    return `mailto:${email}?subject=${subject}&body=${body}`
+    return buildMailto(email, t('contact.mailSubject'), t('contact.mailBody'))
   })
 
   return { mailto }

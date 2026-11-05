@@ -1,6 +1,8 @@
 # Public profiles. Unconfirmed URLs and handles stay [TO PROVIDE].
+# GitHub is the public account Arthuros120. Instagram is the DJ account.
 githubUrl: "https://github.com/Arthuros120"
 linkedinUrl: "[TO PROVIDE]"
 instagramHandle: "[TO PROVIDE]"
-linkedinPosts:
-  - "[TO PROVIDE]"
+# Selected posts. An empty list is valid.
+# Each item is { url, title: { fr, en } }. A real https url becomes a link, never an embed.
+linkedinPosts: []

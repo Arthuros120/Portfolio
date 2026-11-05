@@ -42,9 +42,6 @@
     "viewProjects": "View my projects",
     "contact": "Contact me",
     "contactMissing": "Contact me. Public email address missing.",
-    "contactUnavailable": "[TO PROVIDE] Public email address",
-    "mailSubject": "Portfolio — contact",
-    "mailBody": "Hello Arthur,\n\n",
     "codeFile": "profile.ts",
     "codeComment": "// [PLACEHOLDER]"
   },
@@ -64,7 +61,8 @@
     "careerKicker": "career",
     "skillsKicker": "skills",
     "aboutKicker": "about",
-    "contactKicker": "contact"
+    "contactKicker": "contact",
+    "postsKicker": "linkedin"
   },
   "about": {
     "club": "Club name",
@@ -90,14 +88,24 @@
     "close": "Close"
   },
   "availability": {
-    "open": "Open to interim work, freelance, fixed-term and permanent roles.",
+    "open": "Open to {list}.",
+    "contracts": {
+      "interim": "interim assignments",
+      "freelance": "freelance work through a micro-enterprise",
+      "cdd": "fixed-term contracts (CDD)",
+      "cdi": "permanent roles (CDI)"
+    },
     "until": "On an interim contract until {date}.",
     "availableNow": "Available now",
     "countdownOne": "Just one day before I join your team",
     "countdownMany": "Just {count} days before I join your team"
   },
   "contact": {
-    "postsPending": "[TO PROVIDE] LinkedIn posts",
-    "postLink": "LinkedIn post"
+    "profiles": "Profiles",
+    "emailMissing": "[TO PROVIDE] Public email address",
+    "mailSubject": "Portfolio — contact",
+    "mailBody": "Hello Arthur,\n\n",
+    "postsTitle": "LinkedIn posts",
+    "postsPending": "[TO PROVIDE] LinkedIn posts"
   }
 }

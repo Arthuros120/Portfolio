@@ -42,9 +42,6 @@
     "viewProjects": "Voir mes projets",
     "contact": "Me contacter",
     "contactMissing": "Me contacter. Adresse e-mail publique manquante.",
-    "contactUnavailable": "[TO PROVIDE] Adresse e-mail publique",
-    "mailSubject": "Portfolio — prise de contact",
-    "mailBody": "Bonjour Arthur,\n\n",
     "codeFile": "profile.ts",
     "codeComment": "// [PLACEHOLDER]"
   },
@@ -64,7 +61,8 @@
     "careerKicker": "parcours",
     "skillsKicker": "compétences",
     "aboutKicker": "à propos",
-    "contactKicker": "contact"
+    "contactKicker": "contact",
+    "postsKicker": "linkedin"
   },
   "about": {
     "club": "Nom du club",
@@ -90,14 +88,24 @@
     "close": "Fermer"
   },
   "availability": {
-    "open": "Ouvert à l'intérim, au freelance, au CDD et au CDI.",
+    "open": "Ouvert à {list}.",
+    "contracts": {
+      "interim": "l'intérim",
+      "freelance": "la prestation freelance (micro-entreprise)",
+      "cdd": "le CDD",
+      "cdi": "le CDI"
+    },
     "until": "En contrat d'intérim jusqu'au {date}.",
     "availableNow": "Disponible maintenant",
     "countdownOne": "Plus qu'un jour avant que je rejoigne votre équipe",
     "countdownMany": "Plus que {count} jours avant que je rejoigne votre équipe"
   },
   "contact": {
-    "postsPending": "[TO PROVIDE] Publications LinkedIn",
-    "postLink": "Publication LinkedIn"
+    "profiles": "Profils",
+    "emailMissing": "[TO PROVIDE] Adresse e-mail publique",
+    "mailSubject": "Portfolio — prise de contact",
+    "mailBody": "Bonjour Arthur,\n\n",
+    "postsTitle": "Publications LinkedIn",
+    "postsPending": "[TO PROVIDE] Publications LinkedIn"
   }
 }
