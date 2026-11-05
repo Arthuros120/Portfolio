@@ -1,0 +1,172 @@
+.section {
+  padding-block: 3.5rem 0.5rem;
+}
+
+.section-kicker {
+  margin: 0 0 0.35rem;
+  color: var(--ui-text);
+  font-family: var(--font-mono);
+  font-size: 0.8125rem;
+}
+
+.section-title {
+  margin: 0 0 0.75rem;
+  color: var(--ui-text-highlighted);
+  font-size: clamp(1.75rem, 3vw, 2.25rem);
+  font-weight: 600;
+  line-height: 1.15;
+}
+
+.section-lead {
+  max-width: 40rem;
+  margin: 0 0 1.5rem;
+  color: var(--ui-text);
+  line-height: 1.6;
+}
+
+.project-grid,
+.skill-grid,
+.about-grid {
+  display: grid;
+  gap: 0.9rem;
+}
+
+.project-grid,
+.skill-grid {
+  @media (min-width: 48rem) {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  @media (min-width: 64rem) {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+.project-flag {
+  margin: 0 0 0.75rem;
+  color: var(--ui-text);
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+}
+
+.project-title,
+.skill-title,
+.about-title,
+.career-title {
+  margin: 0 0 0.45rem;
+  color: var(--ui-text-highlighted);
+  font-size: 1.05rem;
+  font-weight: 600;
+}
+
+.project-description,
+.career-detail,
+.about-detail {
+  margin: 0 0 1rem;
+  color: var(--ui-text);
+  line-height: 1.5;
+}
+
+.project-stack,
+.skill-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem;
+  margin: 0 0 1rem;
+  padding: 0;
+  list-style: none;
+}
+
+.career-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.9rem;
+  margin: 0;
+  padding: 0 0 0 1.25rem;
+  list-style: none;
+  border-inline-start: 2px solid var(--ui-border);
+}
+
+.career-item {
+  position: relative;
+  border: 1px solid var(--ui-border);
+  border-radius: 1rem;
+  background: var(--ui-bg-elevated);
+  padding: 1rem 1.1rem 0.25rem;
+}
+
+.career-item::before {
+  content: "";
+  position: absolute;
+  top: 1.15rem;
+  inset-inline-start: calc(-1.25rem - 5px);
+  width: 0.55rem;
+  height: 0.55rem;
+  border-radius: 9999px;
+  background: var(--ui-primary);
+}
+
+.career-period {
+  margin: 0 0 0.3rem;
+  color: var(--ui-text);
+  font-family: var(--font-mono);
+  font-size: 0.8125rem;
+}
+
+.skill-group,
+.about-card {
+  border: 1px solid var(--ui-border);
+  border-radius: 1rem;
+  background: var(--ui-bg-elevated);
+  padding: 1rem 1.1rem 0.35rem;
+}
+
+.about-grid {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+
+  @media (min-width: 48rem) {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  @media (min-width: 64rem) {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+}
+
+.about-card-wide {
+  @media (min-width: 48rem) {
+    grid-column: 1 / -1;
+  }
+}
+
+.about-icon {
+  display: block;
+  margin-bottom: 0.55rem;
+  color: var(--ui-text);
+  font-size: 1.25rem;
+}
+
+.contact-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  margin-bottom: 0.75rem;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .reveal-armed {
+    transition: opacity 600ms ease, transform 600ms ease;
+  }
+
+  .reveal-armed:not(.is-visible) {
+    opacity: 0;
+    transform: translateY(0.75rem);
+  }
+
+  .reveal-armed.is-visible {
+    opacity: 1;
+    transform: none;
+  }
+}

@@ -4,3 +4,8 @@ allowBuilds:
   esbuild: false
   unrs-resolver: false
   vue-demi: false
+
+# Sass lists this watcher as optional. The JS compiler does not need it,
+# and its build stays denied above.
+ignoredOptionalDependencies:
+  - '@parcel/watcher'

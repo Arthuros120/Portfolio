@@ -8,7 +8,7 @@ export default withNuxt(
   {
     settings: {
       'better-tailwindcss': {
-        entryPoint: 'app/assets/css/main.css',
+        entryPoint: 'app/assets/scss/main.scss',
         attributes: [
           ...getDefaultAttributes(),
           ['^v-bind:ui$', [{ match: 'objectValues' }]]
@@ -16,16 +16,26 @@ export default withNuxt(
       }
     },
     rules: {
-      // Classes defined in app/assets/css, loaded from nuxt.config.ts.
+      // Classes defined in app/assets/scss, loaded from nuxt.config.ts.
       'better-tailwindcss/no-unknown-classes': ['error', {
         ignore: [
           '^site-(shell|main|menu-tools|footer)$',
-          '^page-title$',
           '^header-tools$',
           '^theme-toggle$',
           '^locale-switch$',
-          '^footer-links$',
-          '^skip-link$'
+          '^footer-(links|tagline|copyright)$',
+          '^skip-link$',
+          '^hero(?:-.+)?$',
+          '^section(?:-.+)?$',
+          '^project(?:-.+)?$',
+          '^career(?:-.+)?$',
+          '^skill(?:-.+)?$',
+          '^about(?:-.+)?$',
+          '^contact(?:-.+)?$',
+          '^compass(?:-.+)?$',
+          '^code-card(?:-.+)?$',
+          '^reveal-armed$',
+          '^is-visible$'
         ]
       }]
     }

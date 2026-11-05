@@ -4,8 +4,9 @@
   },
   "nav": {
     "label": "Primary",
-    "home": "Home",
     "projects": "Projects",
+    "career": "Career",
+    "skills": "Skills",
     "about": "About",
     "contact": "Contact"
   },
@@ -26,6 +27,78 @@
   "footer": {
     "label": "Links",
     "github": "GitHub",
-    "linkedin": "LinkedIn"
+    "linkedin": "LinkedIn",
+    "tagline": "Built under sail",
+    "copyright": "© {year} {name}"
+  },
+  "hero": {
+    "place": "[TO PROVIDE]",
+    "role": "Full-stack developer",
+    "intro": "[PLACEHOLDER] A short presentation for recruiters and freelance clients will go here. Arthur will replace this paragraph.",
+    "viewProjects": "View my projects",
+    "contact": "Contact me",
+    "contactUnavailable": "[TO PROVIDE] Public email address",
+    "mailSubject": "Portfolio — contact",
+    "mailBody": "Hello Arthur,\n\n",
+    "codeFile": "profile.ts",
+    "code": "// [PLACEHOLDER]\nconst profile = {'{'}\n  name: \"Arthur Hamelin\",\n  role: \"Full-stack developer\"\n{'}'}"
+  },
+  "sections": {
+    "projectsKicker": "projects",
+    "careerKicker": "career",
+    "skillsKicker": "skills",
+    "aboutKicker": "about",
+    "contactKicker": "contact"
+  },
+  "projects": {
+    "lead": "[PLACEHOLDER — example projects] These cards show the layout. They are not Arthur's client work.",
+    "flag": "[PLACEHOLDER — example project]",
+    "linkPending": "[TO PROVIDE]",
+    "taskManager": {
+      "title": "Task manager",
+      "description": "A task manager with a REST API and a PostgreSQL database.",
+      "stack": "TypeScript · PostgreSQL"
+    },
+    "desktop": {
+      "title": "Desktop application",
+      "description": "A small desktop application.",
+      "stack": "TypeScript · Tauri 2"
+    },
+    "dashboard": {
+      "title": "Dashboard",
+      "description": "A dashboard with charts.",
+      "stack": "TypeScript"
+    }
+  },
+  "career": {
+    "lead": "[PLACEHOLDER] Career steps. Dates, employers and job titles are not confirmed.",
+    "period": "[TO PROVIDE]",
+    "title": "[PLACEHOLDER]",
+    "detail": "[PLACEHOLDER]"
+  },
+  "skills": {
+    "lead": "[PLACEHOLDER] Short introduction to the skills below.",
+    "languagesTitle": "Languages",
+    "languages": "TypeScript · Kotlin",
+    "frameworksTitle": "Frameworks and stack",
+    "frameworks": "Nuxt · AdonisJS · Symfony · Tauri 2",
+    "dataTitle": "Data",
+    "data": "PostgreSQL"
+  },
+  "about": {
+    "lead": "[PLACEHOLDER] Sailing and other interests. Arthur will replace this text.",
+    "sailingTitle": "Sailing",
+    "sailingDetail": "[PLACEHOLDER]",
+    "martialArtsTitle": "Martial arts",
+    "martialArtsDetail": "Jiu-jitsu, boxing",
+    "climbingTitle": "Climbing",
+    "climbingDetail": "[PLACEHOLDER]",
+    "gamesTitle": "Video games",
+    "gamesDetail": "[PLACEHOLDER]",
+    "djTitle": "DJ",
+    "djDetail": "[TO PROVIDE] Club name"
+  },
+  "contact": {
+    "lead": "Open to interim work, freelance, fixed-term and permanent roles."
   }
 }

@@ -10,10 +10,10 @@
   padding: 0.5rem 1rem;
   font-weight: 600;
   text-decoration: none;
-}
 
-.skip-link:focus {
-  transform: translateY(0);
+  &:focus {
+    transform: translateY(0);
+  }
 }
 
 .site-main:focus {

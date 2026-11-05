@@ -1,6 +1,9 @@
 <script setup lang="ts">
+import { navSectionIds } from '~/utils/sections'
+
 /**
- * Primary navigation shared by the header bar and the mobile menu.
+ * In-page navigation shared by the header bar and the mobile menu.
+ * Links scroll to sections on the home page. They do not change route.
  */
 defineProps<{
   orientation: 'horizontal' | 'vertical'
@@ -8,13 +11,21 @@ defineProps<{
 
 const { t } = useI18n()
 const localePath = useLocalePath()
+const active = useActiveSection()
 
-const items = computed(() => [
-  { label: t('nav.home'), to: localePath('/'), exact: true },
-  { label: t('nav.projects'), to: localePath('/projects'), exact: true },
-  { label: t('nav.about'), to: localePath('/about'), exact: true },
-  { label: t('nav.contact'), to: localePath('/contact'), exact: true }
-])
+const labels = {
+  projects: 'nav.projects',
+  career: 'nav.career',
+  skills: 'nav.skills',
+  about: 'nav.about',
+  contact: 'nav.contact'
+} as const
+
+const items = computed(() => navSectionIds.map(id => ({
+  label: t(labels[id]),
+  to: `${localePath('/')}#${id}`,
+  active: active.value === id
+})))
 </script>
 
 <template>
