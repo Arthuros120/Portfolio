@@ -5,8 +5,8 @@
  * The plain status sentence stays available to assistive tech. The day line does not.
  */
 const { t, locale } = useI18n()
-const { profile } = usePortfolioContent()
-const { untilDate, timeZone } = profile.availability
+const { availability } = usePortfolioContent()
+const { untilDate, timeZone } = availability
 
 const now = ref(Date.now())
 const days = computed(() => daysUntilAvailable(untilDate, timeZone, now.value))

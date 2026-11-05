@@ -1,15 +1,15 @@
 <script setup lang="ts">
 /**
- * Career timeline from validated YAML. Unconfirmed dates and titles stay marked.
+ * Career steps from validated YAML. Unconfirmed dates and titles stay marked.
  */
 const root = ref<HTMLElement | null>(null)
 useSectionReveal(root)
 
 const { locale, t } = useI18n()
-const { career } = usePortfolioContent()
+const { experiences } = usePortfolioContent()
 
-const lead = computed(() => localized(career.lead, locale.value))
-const steps = computed(() => career.steps.map(step => ({
+const lead = computed(() => localized(experiences.lead, locale.value))
+const steps = computed(() => experiences.steps.map(step => ({
   id: step.id,
   organization: step.organization,
   period: step.period,

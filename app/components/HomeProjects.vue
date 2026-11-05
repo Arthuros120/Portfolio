@@ -1,6 +1,7 @@
 <script setup lang="ts">
 /**
- * Example project cards loaded from validated YAML.
+ * Project cards loaded from validated YAML.
+ * Restricted entries stay free of screenshots and internal figures.
  */
 const root = ref<HTMLElement | null>(null)
 useSectionReveal(root)
@@ -12,7 +13,8 @@ const lead = computed(() => localized(projects.lead, locale.value))
 const cards = computed(() => projects.items.map(item => ({
   id: item.id,
   title: localized(item.title, locale.value),
-  description: localized(item.description, locale.value),
+  organization: item.organization,
+  description: localized(item.summary, locale.value),
   stack: item.stack,
   placeholder: item.placeholder,
   link: item.link
@@ -40,6 +42,7 @@ const cards = computed(() => projects.items.map(item => ({
         :key="card.id"
         :description="card.description"
         :link="card.link"
+        :organization="card.organization"
         :placeholder="card.placeholder"
         :stack="card.stack"
         :title="card.title"

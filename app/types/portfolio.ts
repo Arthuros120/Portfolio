@@ -1,5 +1,6 @@
 /**
  * Bilingual copy stored in the portfolio YAML files.
+ * French and English use the same keys. A missing key fails the build.
  */
 export type Localized = {
   fr: string
@@ -8,11 +9,15 @@ export type Localized = {
 
 export type Project = {
   id: string
+  restricted: boolean
   placeholder: boolean
+  organization: string
   title: Localized
+  summary: Localized
   description: Localized
   stack: string[]
   link: string | null
+  images: string[]
 }
 
 export type ProjectFile = {
@@ -20,7 +25,7 @@ export type ProjectFile = {
   items: Project[]
 }
 
-export type CareerStep = {
+export type ExperienceStep = {
   id: string
   organization: string
   period: string
@@ -28,9 +33,9 @@ export type CareerStep = {
   detail: Localized
 }
 
-export type CareerFile = {
+export type ExperienceFile = {
   lead: Localized
-  steps: CareerStep[]
+  steps: ExperienceStep[]
 }
 
 export type SkillGroup = {
@@ -59,20 +64,26 @@ export type InterestFile = {
 
 export type Profile = {
   email: string
+}
+
+export type Social = {
   githubUrl: string
   linkedinUrl: string
   instagramHandle: string
   linkedinPosts: string[]
-  availability: {
-    untilDate: string
-    timeZone: string
-  }
+}
+
+export type Availability = {
+  untilDate: string
+  timeZone: string
 }
 
 export type PortfolioContent = {
   profile: Profile
-  projects: ProjectFile
-  career: CareerFile
+  experiences: ExperienceFile
   skills: SkillFile
+  projects: ProjectFile
   interests: InterestFile
+  social: Social
+  availability: Availability
 }

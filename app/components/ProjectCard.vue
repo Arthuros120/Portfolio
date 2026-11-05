@@ -2,11 +2,12 @@
 import { resolveHttpsUrl } from '~/utils/public-links'
 
 /**
- * One project card. Placeholder entries stay marked, and the link stays
+ * One project card. Layout fixtures stay marked, and the link stays
  * closed until the content file holds a real https URL.
  */
 const props = defineProps<{
   title: string
+  organization: string
   description: string
   stack: string[]
   placeholder: boolean
@@ -28,10 +29,19 @@ const href = computed(() => resolveHttpsUrl(props.link))
     <h3 class="project-title">
       {{ title }}
     </h3>
+    <p
+      v-if="organization"
+      class="project-org"
+    >
+      {{ organization }}
+    </p>
     <p class="project-description">
       {{ description }}
     </p>
-    <ul class="project-stack">
+    <ul
+      v-if="stack.length"
+      class="project-stack"
+    >
       <li
         v-for="tech in stack"
         :key="tech"
