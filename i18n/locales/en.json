@@ -120,5 +120,17 @@
     "mailBody": "Hello Arthur,\n\n",
     "postsTitle": "LinkedIn posts",
     "postsPending": "[TO PROVIDE] LinkedIn posts"
+  },
+  "seo": {
+    "title": "Arthur Hamelin — Full-stack developer",
+    "description": "Portfolio of Arthur Hamelin, full-stack developer.",
+    "ogImageAlt": "Arthur Hamelin"
+  },
+  "error": {
+    "title404": "Page not found",
+    "body404": "This page does not exist.",
+    "title": "Something went wrong",
+    "body": "This page could not be displayed.",
+    "home": "Back to home"
   }
 }

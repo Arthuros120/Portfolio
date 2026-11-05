@@ -1,13 +1,8 @@
 <script setup lang="ts">
 /**
  * The whole portfolio is one page. Header links scroll to these sections.
+ * The document title lives in useSiteSeo.
  */
-const { t } = useI18n()
-
-useHead(() => ({
-  title: `${t('brand.name')} — ${t('hero.role')}`
-}))
-
 bindActiveSection()
 </script>
 

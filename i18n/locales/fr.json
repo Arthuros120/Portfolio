@@ -120,5 +120,17 @@
     "mailBody": "Bonjour Arthur,\n\n",
     "postsTitle": "Publications LinkedIn",
     "postsPending": "[TO PROVIDE] Publications LinkedIn"
+  },
+  "seo": {
+    "title": "Arthur Hamelin — Développeur full-stack",
+    "description": "Portfolio d'Arthur Hamelin, développeur full-stack.",
+    "ogImageAlt": "Arthur Hamelin"
+  },
+  "error": {
+    "title404": "Page introuvable",
+    "body404": "Cette page n'existe pas.",
+    "title": "Une erreur est survenue",
+    "body": "Cette page n'a pas pu s'afficher.",
+    "home": "Retour à l'accueil"
   }
 }
