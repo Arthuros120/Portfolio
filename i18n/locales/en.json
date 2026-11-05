@@ -28,6 +28,7 @@
     "label": "Links",
     "github": "GitHub",
     "linkedin": "LinkedIn",
+    "instagram": "Instagram",
     "tagline": "Built under sail",
     "copyright": "© {year} {name}"
   },
@@ -51,54 +52,19 @@
     "contactKicker": "contact"
   },
   "projects": {
-    "lead": "[PLACEHOLDER — example projects] These cards show the layout. They are not Arthur's client work.",
     "flag": "[PLACEHOLDER — example project]",
     "linkPending": "[TO PROVIDE]",
-    "taskManager": {
-      "title": "Task manager",
-      "description": "A task manager with a REST API and a PostgreSQL database.",
-      "stack": "TypeScript · PostgreSQL"
-    },
-    "desktop": {
-      "title": "Desktop application",
-      "description": "A small desktop application.",
-      "stack": "TypeScript · Tauri 2"
-    },
-    "dashboard": {
-      "title": "Dashboard",
-      "description": "A dashboard with charts.",
-      "stack": "TypeScript"
-    }
+    "view": "View project"
   },
-  "career": {
-    "lead": "[PLACEHOLDER] Career steps. Dates, employers and job titles are not confirmed.",
-    "period": "[TO PROVIDE]",
-    "title": "[PLACEHOLDER]",
-    "detail": "[PLACEHOLDER]"
-  },
-  "skills": {
-    "lead": "[PLACEHOLDER] Short introduction to the skills below.",
-    "languagesTitle": "Languages",
-    "languages": "TypeScript · Kotlin",
-    "frameworksTitle": "Frameworks and stack",
-    "frameworks": "Nuxt · AdonisJS · Symfony · Tauri 2",
-    "dataTitle": "Data",
-    "data": "PostgreSQL"
-  },
-  "about": {
-    "lead": "[PLACEHOLDER] Sailing and other interests. Arthur will replace this text.",
-    "sailingTitle": "Sailing",
-    "sailingDetail": "[PLACEHOLDER]",
-    "martialArtsTitle": "Martial arts",
-    "martialArtsDetail": "Jiu-jitsu, boxing",
-    "climbingTitle": "Climbing",
-    "climbingDetail": "[PLACEHOLDER]",
-    "gamesTitle": "Video games",
-    "gamesDetail": "[PLACEHOLDER]",
-    "djTitle": "DJ",
-    "djDetail": "[TO PROVIDE] Club name"
+  "availability": {
+    "open": "Open to interim work, freelance, fixed-term and permanent roles.",
+    "until": "On an interim contract until {date}.",
+    "availableNow": "Available now",
+    "countdownOne": "Just one day before I join your team",
+    "countdownMany": "Just {count} days before I join your team"
   },
   "contact": {
-    "lead": "Open to interim work, freelance, fixed-term and permanent roles."
+    "postsPending": "[TO PROVIDE] LinkedIn posts",
+    "postLink": "LinkedIn post"
   }
 }

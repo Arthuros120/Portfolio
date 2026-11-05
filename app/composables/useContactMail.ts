@@ -1,4 +1,4 @@
-import { contactEmail, resolvePublicEmail } from '~/utils/public-links'
+import { resolvePublicEmail } from '~/utils/public-links'
 
 /**
  * Mailto target for the contact actions.
@@ -6,9 +6,10 @@ import { contactEmail, resolvePublicEmail } from '~/utils/public-links'
  */
 export function useContactMail() {
   const { t } = useI18n()
+  const { profile } = usePortfolioContent()
 
   const mailto = computed(() => {
-    const email = resolvePublicEmail(contactEmail)
+    const email = resolvePublicEmail(profile.email)
 
     if (!email) {
       return null

@@ -1,21 +1,19 @@
 <script setup lang="ts">
 /**
- * Confirmed technologies, grouped. No extra tools are listed.
+ * Confirmed technologies, grouped, from validated YAML.
  */
 const root = ref<HTMLElement | null>(null)
 useSectionReveal(root)
 
-const { t } = useI18n()
+const { locale, t } = useI18n()
+const { skills } = usePortfolioContent()
 
-function items(key: 'skills.languages' | 'skills.frameworks' | 'skills.data') {
-  return t(key).split(' · ').map(item => item.trim()).filter(Boolean)
-}
-
-const groups = computed(() => [
-  { title: t('skills.languagesTitle'), items: items('skills.languages') },
-  { title: t('skills.frameworksTitle'), items: items('skills.frameworks') },
-  { title: t('skills.dataTitle'), items: items('skills.data') }
-])
+const lead = computed(() => localized(skills.lead, locale.value))
+const groups = computed(() => skills.groups.map(group => ({
+  id: group.id,
+  title: localized(group.title, locale.value),
+  items: group.items
+})))
 </script>
 
 <template>
@@ -31,12 +29,12 @@ const groups = computed(() => [
       title-id="skills-title"
     />
     <p class="section-lead">
-      {{ t('skills.lead') }}
+      {{ lead }}
     </p>
     <div class="skill-grid">
-      <article
+      <UCard
         v-for="group in groups"
-        :key="group.title"
+        :key="group.id"
         class="skill-group"
       >
         <h3 class="skill-title">
@@ -55,7 +53,7 @@ const groups = computed(() => [
             </UBadge>
           </li>
         </ul>
-      </article>
+      </UCard>
     </div>
   </section>
 </template>

@@ -1,0 +1,22 @@
+lead:
+  fr: "[PLACEHOLDER] Étapes du parcours. Les dates, les employeurs et les intitulés de poste ne sont pas confirmés."
+  en: "[PLACEHOLDER] Career steps. Dates, employers and job titles are not confirmed."
+steps:
+  - id: isilog
+    organization: "Isilog"
+    period: "[TO PROVIDE]"
+    title:
+      fr: "[TO PROVIDE]"
+      en: "[TO PROVIDE]"
+    detail:
+      fr: "[TO PROVIDE]"
+      en: "[TO PROVIDE]"
+  - id: easylog
+    organization: "Easylog"
+    period: "[TO PROVIDE]"
+    title:
+      fr: "[TO PROVIDE]"
+      en: "[TO PROVIDE]"
+    detail:
+      fr: "[TO PROVIDE]"
+      en: "[TO PROVIDE]"

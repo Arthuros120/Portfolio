@@ -1,0 +1,26 @@
+lead:
+  fr: "[PLACEHOLDER] Courte introduction des compétences ci-dessous."
+  en: "[PLACEHOLDER] Short introduction to the skills below."
+groups:
+  - id: languages
+    title:
+      fr: "Langages"
+      en: "Languages"
+    items:
+      - TypeScript
+      - Kotlin
+  - id: frameworks
+    title:
+      fr: "Frameworks et stack"
+      en: "Frameworks and stack"
+    items:
+      - Nuxt
+      - AdonisJS
+      - Symfony
+      - Tauri 2
+  - id: data
+    title:
+      fr: "Données"
+      en: "Data"
+    items:
+      - PostgreSQL

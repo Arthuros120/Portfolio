@@ -1,0 +1,51 @@
+lead:
+  fr: "[PLACEHOLDER — projets exemples] Ces cartes montrent la mise en page. Ce ne sont pas des projets clients d'Arthur."
+  en: "[PLACEHOLDER — example projects] These cards show the layout. They are not Arthur's client work."
+items:
+  - id: task-manager
+    placeholder: true
+    title:
+      fr: "Gestionnaire de tâches"
+      en: "Task manager"
+    description:
+      fr: "Un gestionnaire de tâches avec une API REST et une base PostgreSQL."
+      en: "A task manager with a REST API and a PostgreSQL database."
+    stack:
+      - TypeScript
+      - PostgreSQL
+    link: "[TO PROVIDE]"
+  - id: desktop
+    placeholder: true
+    title:
+      fr: "Application de bureau"
+      en: "Desktop application"
+    description:
+      fr: "Une petite application de bureau."
+      en: "A small desktop application."
+    stack:
+      - TypeScript
+      - Tauri 2
+    link: "[TO PROVIDE]"
+  - id: dashboard
+    placeholder: true
+    title:
+      fr: "Tableau de bord"
+      en: "Dashboard"
+    description:
+      fr: "Un tableau de bord avec des graphiques."
+      en: "A dashboard with charts."
+    stack:
+      - TypeScript
+    link: "[TO PROVIDE]"
+  - id: documentation
+    placeholder: true
+    title:
+      fr: "Site de documentation"
+      en: "Documentation site"
+    description:
+      fr: "Un site de documentation."
+      en: "A documentation site."
+    stack:
+      - TypeScript
+      - Nuxt
+    link: "[TO PROVIDE]"

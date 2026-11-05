@@ -1,12 +1,21 @@
 <script setup lang="ts">
 /**
- * Career timeline. Entries stay placeholders until Arthur confirms them.
+ * Career timeline from validated YAML. Unconfirmed dates and titles stay marked.
  */
 const root = ref<HTMLElement | null>(null)
 useSectionReveal(root)
 
-const { t } = useI18n()
-const entries = [1, 2, 3]
+const { locale, t } = useI18n()
+const { career } = usePortfolioContent()
+
+const lead = computed(() => localized(career.lead, locale.value))
+const steps = computed(() => career.steps.map(step => ({
+  id: step.id,
+  organization: step.organization,
+  period: step.period,
+  title: localized(step.title, locale.value),
+  detail: localized(step.detail, locale.value)
+})))
 </script>
 
 <template>
@@ -22,23 +31,28 @@ const entries = [1, 2, 3]
       title-id="career-title"
     />
     <p class="section-lead">
-      {{ t('career.lead') }}
+      {{ lead }}
     </p>
     <ol class="career-list">
       <li
-        v-for="entry in entries"
-        :key="entry"
+        v-for="step in steps"
+        :key="step.id"
         class="career-item"
       >
-        <p class="career-period">
-          {{ t('career.period') }}
-        </p>
-        <h3 class="career-title">
-          {{ t('career.title') }}
-        </h3>
-        <p class="career-detail">
-          {{ t('career.detail') }}
-        </p>
+        <UCard>
+          <p class="career-period">
+            {{ step.period }}
+          </p>
+          <p class="career-org">
+            {{ step.organization }}
+          </p>
+          <h3 class="career-title">
+            {{ step.title }}
+          </h3>
+          <p class="career-detail">
+            {{ step.detail }}
+          </p>
+        </UCard>
       </li>
     </ol>
   </section>

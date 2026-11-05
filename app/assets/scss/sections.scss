@@ -89,10 +89,6 @@
 
 .career-item {
   position: relative;
-  border: 1px solid var(--ui-border);
-  border-radius: 1rem;
-  background: var(--ui-bg-elevated);
-  padding: 1rem 1.1rem 0.25rem;
 }
 
 .career-item::before {
@@ -106,7 +102,8 @@
   background: var(--ui-primary);
 }
 
-.career-period {
+.career-period,
+.career-org {
   margin: 0 0 0.3rem;
   color: var(--ui-text);
   font-family: var(--font-mono);
@@ -115,10 +112,7 @@
 
 .skill-group,
 .about-card {
-  border: 1px solid var(--ui-border);
-  border-radius: 1rem;
-  background: var(--ui-bg-elevated);
-  padding: 1rem 1.1rem 0.35rem;
+  height: 100%;
 }
 
 .about-grid {
@@ -153,6 +147,36 @@
   flex-wrap: wrap;
   gap: 0.75rem;
   margin-bottom: 0.75rem;
+}
+
+.contact-posts {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  margin: 0 0 1rem;
+  padding: 0;
+  list-style: none;
+}
+
+.availability {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  margin: 0 0 1.25rem;
+}
+
+.availability-open,
+.availability-status,
+.availability-count {
+  max-width: 40rem;
+  margin: 0;
+  color: var(--ui-text);
+  line-height: 1.6;
+}
+
+.availability-count {
+  min-height: 1.6em;
+  font-variant-numeric: tabular-nums;
 }
 
 @media (prefers-reduced-motion: no-preference) {

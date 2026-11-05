@@ -1,0 +1,12 @@
+# Public profile slots. Unconfirmed facts stay [TO PROVIDE].
+email: "[TO PROVIDE]"
+githubUrl: "https://github.com/Arthuros120"
+linkedinUrl: "[TO PROVIDE]"
+instagramHandle: "[TO PROVIDE]"
+linkedinPosts:
+  - "[TO PROVIDE]"
+availability:
+  # Last day of the interim contract. The countdown ends at the end of this
+  # calendar day in timeZone (the first instant of the next day).
+  untilDate: "2027-04-02"
+  timeZone: "Europe/Paris"
