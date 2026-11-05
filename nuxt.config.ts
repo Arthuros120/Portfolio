@@ -1,7 +1,9 @@
 import { loadPortfolioContent } from './content/load.mjs'
 import scssTailwindEntry from './scss-tailwind-entry.mjs'
+import { publicOrigin } from './app/utils/site-origin'
 
 const portfolio = loadPortfolioContent()
+const siteUrl = publicOrigin(portfolio.profile.siteUrl)
 
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
@@ -27,7 +29,8 @@ export default defineNuxtConfig({
     '~/assets/scss/projects.scss',
     '~/assets/scss/career.scss',
     '~/assets/scss/modal.scss',
-    '~/assets/scss/accessibility.scss'
+    '~/assets/scss/accessibility.scss',
+    '~/assets/scss/error.scss'
   ],
 
   // Apply the saved or system theme before paint. An empty suffix matches Nuxt UI.
@@ -52,6 +55,12 @@ export default defineNuxtConfig({
 
   compatibilityDate: '2026-06-30',
 
+  nitro: {
+    prerender: {
+      routes: ['/sitemap.xml', '/robots.txt']
+    }
+  },
+
   vite: {
     plugins: [scssTailwindEntry()]
   },
@@ -66,6 +75,7 @@ export default defineNuxtConfig({
   },
 
   i18n: {
+    baseUrl: siteUrl ?? '',
     defaultLocale: 'fr',
     strategy: 'prefix_except_default',
     detectBrowserLanguage: false,

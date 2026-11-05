@@ -233,6 +233,11 @@ function hasInternalMaterial(value, path) {
     return true
   }
 
+  // The Open Graph file is a public asset path, checked in assertOgImage.
+  if (path === 'content.profile.ogImage') {
+    return false
+  }
+
   return mediaFilePattern.test(value) && !projectImageSrcPath.test(path)
 }
 
@@ -286,8 +291,62 @@ function assertProfile(profile) {
     fail('profile must be an object')
   }
 
-  exactKeys(profile, ['email'], 'profile')
+  exactKeys(profile, ['email', 'siteUrl', 'ogImage'], 'profile')
   assertEmail(profile.email, 'profile.email')
+  assertSiteUrl(profile.siteUrl, 'profile.siteUrl')
+  assertOgImage(profile.ogImage, 'profile.ogImage')
+}
+
+/**
+ * Keep the pattern in sync with publicOrigin in app/utils/site-origin.ts.
+ *
+ * @param {unknown} value
+ * @param {string} path
+ */
+function assertSiteUrl(value, path) {
+  nonEmptyString(value, path)
+
+  if (typeof value !== 'string' || isPlaceholder(value)) {
+    return
+  }
+
+  const trimmed = value.trim().replace(/\/$/, '')
+
+  if (/^https:\/\/[A-Za-z0-9.-]+(?::\d+)?$/.test(trimmed)) {
+    return
+  }
+
+  fail(`${path} must be an https origin or a [TO PROVIDE] slot`)
+}
+
+/**
+ * Keep the pattern in sync with publicOgImage in app/utils/site-origin.ts.
+ *
+ * @param {unknown} value
+ * @param {string} path
+ */
+function assertOgImage(value, path) {
+  nonEmptyString(value, path)
+
+  if (typeof value !== 'string' || isPlaceholder(value)) {
+    return
+  }
+
+  if (!/^\/og\.(?:svg|png|jpe?g|webp|avif)$/.test(value)) {
+    fail(`${path} must be /og.svg, /og.png, /og.jpg, /og.webp, or /og.avif, or a [TO PROVIDE] slot`)
+  }
+
+  const relative = value.replace(/^\//, '')
+  const file = join(publicRoot, relative)
+  const rootWithSep = publicRoot.endsWith('/') ? publicRoot : `${publicRoot}/`
+
+  if (!file.startsWith(rootWithSep)) {
+    fail(`${path} must stay inside public assets`)
+  }
+
+  if (!existsSync(file)) {
+    fail(`${path} file is missing`)
+  }
 }
 
 /**

@@ -1,2 +1,8 @@
 # Mailto address. Stays [TO PROVIDE] until Arthur supplies a public mailbox.
 email: "[TO PROVIDE]"
+# Public https origin for canonical URLs, hreflang, the sitemap, and Open Graph.
+# No path. [TO PROVIDE] until the domain exists.
+siteUrl: "[TO PROVIDE]"
+# Open Graph image in public/, named /og.svg, /og.png, /og.jpg, /og.webp, or /og.avif.
+# A portrait is not invented. [TO PROVIDE]
+ogImage: "[TO PROVIDE]"

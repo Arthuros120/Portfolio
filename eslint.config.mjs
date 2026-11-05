@@ -42,7 +42,8 @@ export default withNuxt(
           '^reveal-armed$',
           '^is-visible$',
           '^site-modal(?:-.+)?$',
-          '^has-site-modal$'
+          '^has-site-modal$',
+          '^error-(page|mark|code|title|body|horizon|home)$'
         ]
       }]
     }

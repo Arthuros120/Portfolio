@@ -96,6 +96,10 @@ export type InterestFile = {
 
 export type Profile = {
   email: string
+  /** https origin, or a [TO PROVIDE] slot until the domain exists. */
+  siteUrl: string
+  /** /og.* in public/, or a [TO PROVIDE] slot. Not a portrait. */
+  ogImage: string
 }
 
 /** One selected LinkedIn post. Empty lists are valid. Titles are bilingual. */
