@@ -26,7 +26,8 @@ export default defineNuxtConfig({
     '~/assets/scss/about.scss',
     '~/assets/scss/projects.scss',
     '~/assets/scss/career.scss',
-    '~/assets/scss/modal.scss'
+    '~/assets/scss/modal.scss',
+    '~/assets/scss/accessibility.scss'
   ],
 
   // Apply the saved or system theme before paint. An empty suffix matches Nuxt UI.
@@ -90,6 +91,7 @@ export default defineNuxtConfig({
         'lucide:monitor',
         'lucide:menu',
         'lucide:x',
+        'lucide:accessibility',
         'lucide:sailboat',
         'lucide:swords',
         'lucide:mountain',

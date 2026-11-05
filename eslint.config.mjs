@@ -30,6 +30,7 @@ export default withNuxt(
           '^social(?:-.+)?$',
           '^linkedin(?:-.+)?$',
           '^skip-link$',
+          '^a11y(?:-.+)?$',
           '^hero(?:-.+)?$',
           '^section(?:-.+)?$',
           '^project(?:-.+)?$',

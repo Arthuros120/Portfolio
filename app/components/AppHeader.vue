@@ -75,14 +75,30 @@ onMounted(() => {
       open.value = false
     }
   }
+  const header = document.querySelector<HTMLElement>('.site-header')
+  const applyOffset = () => {
+    if (!header) {
+      return
+    }
+
+    const height = Math.ceil(header.getBoundingClientRect().height)
+    document.documentElement.style.setProperty('--site-header-offset', `${height + 12}px`)
+  }
+  const headerObserver = new ResizeObserver(applyOffset)
 
   onScroll()
+  applyOffset()
   window.addEventListener('scroll', onScroll, { passive: true })
   desktop.addEventListener('change', closeOnDesktop)
+
+  if (header) {
+    headerObserver.observe(header)
+  }
 
   onUnmounted(() => {
     window.removeEventListener('scroll', onScroll)
     desktop.removeEventListener('change', closeOnDesktop)
+    headerObserver.disconnect()
   })
 })
 </script>
@@ -104,6 +120,7 @@ onMounted(() => {
         <LocaleSwitch />
         <ThemeToggle />
       </div>
+      <AccessibilityPanel />
     </template>
 
     <template #toggle="{ open: isOpen, toggle, ui }">
