@@ -20,13 +20,22 @@ export default withNuxt(
       'better-tailwindcss/no-unknown-classes': ['error', {
         ignore: [
           '^site-(shell|main|menu-tools|footer)$',
-          '^page-title$',
           '^header-tools$',
           '^theme-toggle$',
           '^locale-switch$',
-          '^footer-links$',
+          '^footer-(links|tagline|copyright)$',
           '^skip-link$',
-          '^hero(?:-name|-role|-intro|-actions|-note|-horizon)?$'
+          '^hero(?:-.+)?$',
+          '^section(?:-.+)?$',
+          '^project(?:-.+)?$',
+          '^career(?:-.+)?$',
+          '^skill(?:-.+)?$',
+          '^about(?:-.+)?$',
+          '^contact(?:-.+)?$',
+          '^compass(?:-.+)?$',
+          '^code-card(?:-.+)?$',
+          '^reveal-armed$',
+          '^is-visible$'
         ]
       }]
     }

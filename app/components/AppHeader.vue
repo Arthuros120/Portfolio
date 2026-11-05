@@ -4,12 +4,13 @@
  */
 const { t } = useI18n()
 const localePath = useLocalePath()
+const homeHash = computed(() => `${localePath('/')}#top`)
 </script>
 
 <template>
   <UHeader
     :title="t('brand.name')"
-    :to="localePath('/')"
+    :to="homeHash"
   >
     <SiteNav orientation="horizontal" />
 

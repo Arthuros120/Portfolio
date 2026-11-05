@@ -16,7 +16,8 @@ export default defineNuxtConfig({
     '~/assets/scss/main.scss',
     '~/assets/scss/layout.scss',
     '~/assets/scss/focus.scss',
-    '~/assets/scss/hero.scss'
+    '~/assets/scss/hero.scss',
+    '~/assets/scss/sections.scss'
   ],
 
   // Apply the saved or system theme before paint. An empty suffix matches Nuxt UI.
@@ -73,7 +74,12 @@ export default defineNuxtConfig({
         'lucide:moon',
         'lucide:monitor',
         'lucide:menu',
-        'lucide:x'
+        'lucide:x',
+        'lucide:sailboat',
+        'lucide:swords',
+        'lucide:mountain',
+        'lucide:gamepad-2',
+        'lucide:music'
       ]
     }
   }

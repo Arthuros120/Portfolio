@@ -1,80 +1,80 @@
 <script setup lang="ts">
-import { contactEmail, resolvePublicEmail } from '~/utils/public-links'
-
 /**
- * Home hero: name, role, a placeholder introduction, and two calls to action.
- * Contact stays disabled until content holds a real public email address.
+ * Opening screen: name, role, placeholder introduction, actions, compass and code card.
  */
 const { t } = useI18n()
 const localePath = useLocalePath()
+const { mailto } = useContactMail()
 
-const mailto = computed(() => {
-  const email = resolvePublicEmail(contactEmail)
-
-  if (!email) {
-    return null
-  }
-
-  const subject = encodeURIComponent(t('hero.mailSubject'))
-  const body = encodeURIComponent(t('hero.mailBody'))
-
-  return `mailto:${email}?subject=${subject}&body=${body}`
-})
-
-useHead(() => ({
-  title: `${t('brand.name')} — ${t('hero.role')}`
-}))
+const projectsHref = computed(() => `${localePath('/')}#projects`)
 </script>
 
 <template>
   <section
-    aria-labelledby="hero-title"
+    id="top"
     class="hero"
+    aria-labelledby="hero-title"
   >
-    <div
-      aria-hidden="true"
-      class="hero-horizon"
-    />
-    <h1
-      id="hero-title"
-      class="hero-name"
-    >
-      {{ t('brand.name') }}
-    </h1>
-    <p class="hero-role">
-      {{ t('hero.role') }}
-    </p>
-    <p class="hero-intro">
-      {{ t('hero.intro') }}
-    </p>
-    <div class="hero-actions">
-      <UButton
-        color="primary"
-        :label="t('hero.viewProjects')"
-        :to="localePath('/projects')"
+    <div class="hero-copy">
+      <p class="hero-place">
+        {{ t('hero.place') }}
+      </p>
+      <h1
+        id="hero-title"
+        class="hero-name"
+      >
+        {{ t('brand.name') }}
+      </h1>
+      <p class="hero-role">
+        {{ t('hero.role') }}
+      </p>
+      <div
+        class="hero-horizon"
+        aria-hidden="true"
       />
-      <UButton
-        v-if="mailto"
-        color="neutral"
-        :label="t('hero.contact')"
-        :to="mailto"
-        variant="outline"
-      />
-      <UButton
-        v-else
-        aria-describedby="hero-contact-note"
-        color="neutral"
-        disabled
-        :label="t('hero.contact')"
-        variant="outline"
-      />
+      <p class="hero-intro">
+        {{ t('hero.intro') }}
+      </p>
+      <div class="hero-actions">
+        <UButton
+          color="primary"
+          :label="t('hero.viewProjects')"
+          :to="projectsHref"
+        />
+        <ContactButton :described-by="mailto ? undefined : 'hero-contact-note'" />
+      </div>
+      <p
+        v-if="!mailto"
+        id="hero-contact-note"
+        class="hero-note"
+      >
+        {{ t('hero.contactUnavailable') }}
+      </p>
     </div>
-    <p
-      v-if="!mailto"
-      id="hero-contact-note"
-      class="hero-note"
+    <div class="hero-aside">
+      <HeroCompass />
+      <HeroCodeCard />
+    </div>
+    <div
+      class="hero-wave"
+      aria-hidden="true"
     >
-      {{ t('hero.contactUnavailable') }}
-    </p>
+      <div class="hero-wave-track">
+        <svg
+          class="hero-wave-svg"
+          viewBox="0 0 1440 80"
+          preserveAspectRatio="none"
+        >
+          <path d="M0 40C180 70 360 10 540 40C720 70 900 10 1080 40C1260 70 1440 40 1440 40V80H0Z" />
+        </svg>
+        <svg
+          class="hero-wave-svg"
+          viewBox="0 0 1440 80"
+          preserveAspectRatio="none"
+        >
+          <path d="M0 40C180 70 360 10 540 40C720 70 900 10 1080 40C1260 70 1440 40 1440 40V80H0Z" />
+        </svg>
+      </div>
+    </div>
   </section>
 </template>

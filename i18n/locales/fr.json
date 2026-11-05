@@ -4,8 +4,9 @@
   },
   "nav": {
     "label": "Navigation principale",
-    "home": "Accueil",
     "projects": "Projets",
+    "career": "Parcours",
+    "skills": "Compétences",
     "about": "À propos",
     "contact": "Contact"
   },
@@ -26,15 +27,78 @@
   "footer": {
     "label": "Liens",
     "github": "GitHub",
-    "linkedin": "LinkedIn"
+    "linkedin": "LinkedIn",
+    "tagline": "Construit à la voile",
+    "copyright": "© {year} {name}"
   },
   "hero": {
+    "place": "[TO PROVIDE]",
     "role": "Développeur full-stack",
     "intro": "[PLACEHOLDER] Une courte présentation pour les recruteurs et les clients freelance viendra ici. Arthur remplacera ce paragraphe.",
-    "viewProjects": "Voir les projets",
+    "viewProjects": "Voir mes projets",
     "contact": "Me contacter",
     "contactUnavailable": "[TO PROVIDE] Adresse e-mail publique",
     "mailSubject": "Portfolio — prise de contact",
-    "mailBody": "Bonjour Arthur,\n\n"
+    "mailBody": "Bonjour Arthur,\n\n",
+    "codeFile": "profile.ts",
+    "code": "// [PLACEHOLDER]\nconst profile = {'{'}\n  name: \"Arthur Hamelin\",\n  role: \"Développeur full-stack\"\n{'}'}"
+  },
+  "sections": {
+    "projectsKicker": "projets",
+    "careerKicker": "parcours",
+    "skillsKicker": "compétences",
+    "aboutKicker": "à propos",
+    "contactKicker": "contact"
+  },
+  "projects": {
+    "lead": "[PLACEHOLDER — projets exemples] Ces cartes montrent la mise en page. Ce ne sont pas des projets clients d'Arthur.",
+    "flag": "[PLACEHOLDER — projet exemple]",
+    "linkPending": "[TO PROVIDE]",
+    "taskManager": {
+      "title": "Gestionnaire de tâches",
+      "description": "Un gestionnaire de tâches avec une API REST et une base PostgreSQL.",
+      "stack": "TypeScript · PostgreSQL"
+    },
+    "desktop": {
+      "title": "Application de bureau",
+      "description": "Une petite application de bureau.",
+      "stack": "TypeScript · Tauri 2"
+    },
+    "dashboard": {
+      "title": "Tableau de bord",
+      "description": "Un tableau de bord avec des graphiques.",
+      "stack": "TypeScript"
+    }
+  },
+  "career": {
+    "lead": "[PLACEHOLDER] Étapes du parcours. Les dates, les employeurs et les intitulés de poste ne sont pas confirmés.",
+    "period": "[TO PROVIDE]",
+    "title": "[PLACEHOLDER]",
+    "detail": "[PLACEHOLDER]"
+  },
+  "skills": {
+    "lead": "[PLACEHOLDER] Courte introduction des compétences ci-dessous.",
+    "languagesTitle": "Langages",
+    "languages": "TypeScript · Kotlin",
+    "frameworksTitle": "Frameworks et stack",
+    "frameworks": "Nuxt · AdonisJS · Symfony · Tauri 2",
+    "dataTitle": "Données",
+    "data": "PostgreSQL"
+  },
+  "about": {
+    "lead": "[PLACEHOLDER] La voile et les autres centres d'intérêt. Arthur remplacera ce texte.",
+    "sailingTitle": "Voile",
+    "sailingDetail": "[PLACEHOLDER]",
+    "martialArtsTitle": "Sports de combat",
+    "martialArtsDetail": "Jiu-jitsu, boxe",
+    "climbingTitle": "Escalade",
+    "climbingDetail": "[PLACEHOLDER]",
+    "gamesTitle": "Jeux vidéo",
+    "gamesDetail": "[PLACEHOLDER]",
+    "djTitle": "DJ",
+    "djDetail": "[TO PROVIDE] Nom du club"
+  },
+  "contact": {
+    "lead": "Ouvert à l'intérim, au freelance, au CDD et au CDI."
   }
 }

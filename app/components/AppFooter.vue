@@ -5,12 +5,20 @@ import { githubUrl, linkedinUrl } from '~/utils/public-links'
  * Footer with the public GitHub profile and the LinkedIn placeholder.
  */
 const { t } = useI18n()
+const year = new Date().getFullYear()
 </script>
 
 <template>
   <UFooter>
     <div class="site-footer">
-      <p>{{ t('brand.name') }}</p>
+      <div>
+        <p class="footer-copyright">
+          {{ t('footer.copyright', { year, name: t('brand.name') }) }}
+        </p>
+        <p class="footer-tagline">
+          {{ t('footer.tagline') }}
+        </p>
+      </div>
       <nav
         class="footer-links"
         :aria-label="t('footer.label')"
