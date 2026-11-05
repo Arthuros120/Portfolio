@@ -3,6 +3,7 @@ import { en, fr } from '@nuxt/ui/locale'
 import { assertLocaleParity } from '~/utils/locale-parity'
 
 assertLocaleParity()
+useModalScrollLock()
 
 const { locale, locales } = useI18n()
 const uiLocale = computed(() => locale.value === 'en' ? en : fr)

@@ -38,7 +38,10 @@ export default withNuxt(
           '^compass(?:-.+)?$',
           '^code-card(?:-.+)?$',
           '^reveal-armed$',
-          '^is-visible$'
+          '^is-visible$',
+          '^site-modal(?:-.+)?$',
+          '^modal-placeholder(?:-.+)?$',
+          '^has-site-modal$'
         ]
       }]
     }

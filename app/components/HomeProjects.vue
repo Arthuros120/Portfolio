@@ -48,5 +48,6 @@ const cards = computed(() => projects.items.map(item => ({
         :title="card.title"
       />
     </div>
+    <ModalPlaceholder />
   </section>
 </template>

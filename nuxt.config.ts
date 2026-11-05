@@ -20,7 +20,8 @@ export default defineNuxtConfig({
     '~/assets/scss/layout.scss',
     '~/assets/scss/focus.scss',
     '~/assets/scss/hero.scss',
-    '~/assets/scss/sections.scss'
+    '~/assets/scss/sections.scss',
+    '~/assets/scss/modal.scss'
   ],
 
   // Apply the saved or system theme before paint. An empty suffix matches Nuxt UI.
